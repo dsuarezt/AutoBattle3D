@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Characters
 {
-    [CreateAssetMenu(fileName = "Rarity", menuName = "Cyber Titans/Characters/Rarity")]
+    [CreateAssetMenu(fileName = "Rarity", menuName = "CyberTitans/Characters/Rarity")]
     public class RaritySO : DescriptionBaseSO, IEquatable<RaritySO>
     {
         #region Fields

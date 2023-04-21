@@ -19,8 +19,8 @@ namespace LitLab.CyberTitans.Characters
         [SerializeField] private GameObject _characterPrefab = default;
         [SerializeField] private RaritySO _rarity;
         [SerializeField] private Texture _cardImage = default;
-        [SerializeField] private int _health = default;
-        [SerializeField] private int _damage = default;
+        [SerializeField] private int _health = 10;
+        [SerializeField] private int _damage = 2;
 
         #endregion
 
