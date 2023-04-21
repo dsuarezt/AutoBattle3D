@@ -1,0 +1,44 @@
+#NEW#//-----------------------------------------------------------------------
+// File name: #SCRIPTNAME#.cs
+// Author: #AUTHOR#
+// Email: #EMAIL#
+// Created on: #DATE#
+//-----------------------------------------------------------------------
+
+using UnityEngine;
+
+namespace #NAMESPACE#
+{
+    public class #SCRIPTNAME# : MonoBehaviour
+	{
+        #region Constants
+        
+
+
+        #endregion
+
+        #region Fields
+		
+
+
+        #endregion
+
+        #region Properties
+		
+
+
+        #endregion
+
+        #region Engine Methods
+		
+
+
+        #endregion
+
+        #region Methods
+		
+
+
+        #endregion
+    }
+}

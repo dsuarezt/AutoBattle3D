@@ -1,0 +1,52 @@
+#NEW#//-----------------------------------------------------------------------
+// File name: #SCRIPTNAME#.cs
+// Author: #AUTHOR#
+// Email: #EMAIL#
+// Created on: #DATE#
+//-----------------------------------------------------------------------
+
+using LitLab.CyberTitans.Shared;
+using UnityEngine;
+
+namespace #NAMESPACE#
+{
+	[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "Cyber Titans/#SCRIPTNAME#")]
+    public class #SCRIPTNAME# : DescriptionBaseSO
+	{
+        #region Constants
+        
+
+
+        #endregion
+
+        #region Fields
+		
+
+
+        #endregion
+
+        #region Properties
+		
+
+
+        #endregion
+
+        #region Constructors
+		
+
+
+        #endregion
+
+        #region Engine Methods
+		
+
+
+        #endregion
+
+        #region Methods
+		
+
+
+        #endregion
+    }
+}

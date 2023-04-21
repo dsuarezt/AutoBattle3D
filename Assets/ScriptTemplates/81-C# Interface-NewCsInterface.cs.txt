@@ -1,0 +1,24 @@
+#NEW#//-----------------------------------------------------------------------
+// File name: #SCRIPTNAME#.cs
+// Author: #AUTHOR#
+// Email: #EMAIL#
+// Created on: #DATE#
+//-----------------------------------------------------------------------
+
+namespace #NAMESPACE#
+{
+    public interface #SCRIPTNAME#
+	{
+        #region Properties
+		
+
+
+        #endregion
+
+        #region Methods
+		
+
+
+        #endregion
+    }
+}

@@ -1,0 +1,13 @@
+#NEW#//-----------------------------------------------------------------------
+// File name: #SCRIPTNAME#.cs
+// Author: #AUTHOR#
+// Email: #EMAIL#
+// Created on: #DATE#
+//-----------------------------------------------------------------------
+
+namespace #NAMESPACE#
+{
+    public enum #SCRIPTNAME#
+    {
+    }
+}
