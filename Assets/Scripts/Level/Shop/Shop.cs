@@ -15,12 +15,6 @@ namespace LitLab.CyberTitans.Shop
 {
     public class Shop : MonoBehaviour
     {
-        #region Constants
-
-
-
-        #endregion
-
         #region Fields
 
         [SerializeField] private ShopInitialSettingsSO _shopInitialSettings = default;
