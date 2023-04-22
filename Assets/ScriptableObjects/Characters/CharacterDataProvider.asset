@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: CharacterDataProvider
   m_EditorClassIdentifier: 
   _description: 
-  _characters: []
+  _characters:
+  - {fileID: 11400000, guid: 497dd31245d5491478cc9dc7e8d24c1d, type: 2}

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: OrcCharacterData
   m_EditorClassIdentifier: 
   _description: 
-  _rarity: {fileID: 11400000, guid: 3b1ed90b35005ee4b8882bff279ca6c7, type: 2}
-  _shopImage: {fileID: 0}
+  _characterName: Orc
   _characterPrefab: {fileID: 0}
+  _rarity: {fileID: 11400000, guid: 3b1ed90b35005ee4b8882bff279ca6c7, type: 2}
+  _cardImage: {fileID: 21300000, guid: 9c0d6ec706e01ce448aea81584af092b, type: 3}
+  _health: 10
+  _damage: 3

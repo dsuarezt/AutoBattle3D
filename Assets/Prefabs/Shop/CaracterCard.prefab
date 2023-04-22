@@ -122,7 +122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6359556531272333715}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 828913160138593158}
+        m_TargetAssemblyTypeName: LitLab.CyberTitans.Shop.CharacterCard, Assembly-CSharp
+        m_MethodName: BuyCharacter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3504807401163545797
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8479370788158940018}
   - component: {fileID: 5699333208370249993}
+  - component: {fileID: 828913160138593158}
   m_Layer: 5
   m_Name: CaracterCard
   m_TagString: Untagged
@@ -168,6 +181,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3504807401163545797}
   m_CullTransparentMesh: 1
+--- !u!114 &828913160138593158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3504807401163545797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e5a8d918e254b48bf643235da30d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardContent: {fileID: 3080230112108387159}
+  _costText: {fileID: 4470652361927056705}
+  _characterNameText: {fileID: 3452464667495892626}
+  _characterImage: {fileID: 6359556531272333715}
 --- !u!1 &3808357616123320624
 GameObject:
   m_ObjectHideFlags: 0
