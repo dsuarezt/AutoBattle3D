@@ -1,17 +1,15 @@
 //-----------------------------------------------------------------------
-// File name: CharacterDataProviderSO.cs
+// File name: Character.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
-using LitLab.CyberTitans.Shared;
 using UnityEngine;
 
 namespace LitLab.CyberTitans.Characters
 {
-    [CreateAssetMenu(fileName = "CharacterDataProvider", menuName = "CyberTitans/Characters/Character Data Provider")]
-    public class CharacterDataProviderSO : DescriptionBaseSO
+    public class Character : MonoBehaviour
     {
         #region Constants
 
@@ -21,15 +19,28 @@ namespace LitLab.CyberTitans.Characters
 
         #region Fields
 
-        [SerializeField] private CharacterDataSO[] _characters = default;
+        private CharacterDataSO _characterData;
+
+        #endregion
+
+        #region Properties
+
+
+
+        #endregion
+
+        #region Engine Methods
+
+
 
         #endregion
 
         #region Methods
 
-        public CharacterDataSO GetRandomCharacterData()
+        public void Initialize(CharacterDataSO characterData)
         {
-            return _characters[Random.Range(0, _characters.Length)];
+            _characterData = characterData;
+            name = characterData.CharacterName;
         }
 
         #endregion

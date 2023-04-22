@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117341f4b1d37684da3a4946f1f06593, type: 3}
   m_Name: CharacterDataProvider
   m_EditorClassIdentifier: 
-  _description: 
+  _description: Returns CharacterDataSO randomly.
   _characters:
   - {fileID: 11400000, guid: 497dd31245d5491478cc9dc7e8d24c1d, type: 2}

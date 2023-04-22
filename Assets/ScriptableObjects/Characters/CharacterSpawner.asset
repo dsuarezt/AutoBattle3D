@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0e591cedfe28da49b942964681c19ee, type: 3}
-  m_Name: OnGoldAmountChangedChannel
+  m_Script: {fileID: 11500000, guid: f7e9366d341a8bc48b1b38169584d982, type: 3}
+  m_Name: CharacterSpawner
   m_EditorClassIdentifier: 
-  _description: Raises the event when the amount of gold changed. It is raised by
-    LevelEconomyManager.
-  _value: 0
+  _description: Spawns characters in the scene using a given CharacterDataSO.

@@ -19,6 +19,8 @@ namespace LitLab.CyberTitans.Shared
 
         public const string UI_ELEMENTS = "UI Elements";
 
+        public const string INVENTORY_SYSTEM = "Inventory System";
+
         #endregion
     }
 }

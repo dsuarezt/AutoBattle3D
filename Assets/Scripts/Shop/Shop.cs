@@ -7,6 +7,7 @@
 
 using GivingLife.Debugging;
 using LitLab.CyberTitans.Characters;
+using LitLab.CyberTitans.InventorySystem;
 using LitLab.CyberTitans.Level;
 using LitLab.CyberTitans.Shared;
 using TMPro;
@@ -22,10 +23,13 @@ namespace LitLab.CyberTitans.Shop
         [SerializeField] private ShopInitialSettingsSO _shopInitialSettings = default;
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
         [SerializeField] private CharacterDataProviderSO _characterDataProvider = default;
-        
+
         [Header(AttributeConstants.UI_ELEMENTS)]
         [SerializeField] private TMP_Text _refreshCostText = default;
         [SerializeField] private CharacterCard[] _characterCards = default;
+
+        [Header(AttributeConstants.INVENTORY_SYSTEM)]
+        [SerializeField] private Inventory _inventory = default;
 
         private int _shopRefreshCost;
 
@@ -67,20 +71,20 @@ namespace LitLab.CyberTitans.Shop
 
         public bool TryBuyCharacter(CharacterDataSO characterData)
         {
-            // TODO: Check if there is enough gold and if there are empty slots in the inventory.
-            bool canBuyCharacter = _levelEconomyManager.TryMakePayment(characterData.Cost);
-
-            if (canBuyCharacter)
+            if (_inventory.AnyEmptySlot)
             {
-                // TODO: Put the character on the inventory.
-                GLDebug.Log($"Putting the character {characterData.CharacterName} on the inventory.", Color.green);
-            }
-            else
-            {
-                GLDebug.Log("There is not enough gold or space in the inventory to buy a character.");
+                bool wasPaymentSuccessful = _levelEconomyManager.TryMakePayment(characterData.Cost);
+
+                if (wasPaymentSuccessful)
+                {
+                    _inventory.AddCharacter(characterData);
+                    GLDebug.Log($"Putting the character {characterData.CharacterName} on the inventory.", Color.green);
+
+                    return true;
+                }
             }
 
-            return canBuyCharacter;
+            return false;
         }
 
         private void GenerateNewCards()

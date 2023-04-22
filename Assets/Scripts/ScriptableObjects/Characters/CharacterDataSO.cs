@@ -16,7 +16,7 @@ namespace LitLab.CyberTitans.Characters
         #region Fields
 
         [SerializeField] private string _characterName = default;
-        [SerializeField] private GameObject _characterPrefab = default;
+        [SerializeField] private Character _characterPrefab = default;
         [SerializeField] private RaritySO _rarity;
         [SerializeField] private Sprite _cardImage = default;
         [SerializeField] private int _health = 10;
@@ -27,7 +27,7 @@ namespace LitLab.CyberTitans.Characters
         #region Properties
          
         public string CharacterName => _characterName;
-        public GameObject CharacterPrefab => _characterPrefab;
+        public Character CharacterPrefab => _characterPrefab;
         public RaritySO Rarity => _rarity;
         public int Cost => _rarity.Cost;
         public Sprite CardImage => _cardImage;
