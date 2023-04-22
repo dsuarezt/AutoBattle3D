@@ -7,6 +7,7 @@
 
 using GivingLife.Debugging;
 using LitLab.CyberTitans.Characters;
+using LitLab.CyberTitans.Shared;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,33 +16,17 @@ namespace LitLab.CyberTitans.Shop
 {
     public class CharacterCard : MonoBehaviour
     {
-        #region Constants
-
-
-
-        #endregion
-
         #region Fields
 
         [SerializeField] private Shop _shop = default;
+
+        [Header(AttributeConstants.UI_ELEMENTS)]
         [SerializeField] private GameObject _cardContent = default;
         [SerializeField] private TMP_Text _costText = default;
         [SerializeField] private TMP_Text _characterNameText = default;
         [SerializeField] private Image _characterImage = default;
 
         private CharacterDataSO _characterData;
-
-        #endregion
-
-        #region Properties
-
-
-
-        #endregion
-
-        #region Engine Methods
-
-
 
         #endregion
 

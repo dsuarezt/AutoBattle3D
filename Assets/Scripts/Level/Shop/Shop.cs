@@ -8,6 +8,7 @@
 using GivingLife.Debugging;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Level;
+using LitLab.CyberTitans.Shared;
 using TMPro;
 using UnityEngine;
 
@@ -17,9 +18,12 @@ namespace LitLab.CyberTitans.Shop
     {
         #region Fields
 
+        [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
         [SerializeField] private ShopInitialSettingsSO _shopInitialSettings = default;
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
         [SerializeField] private CharacterDataProviderSO _characterDataProvider = default;
+        
+        [Header(AttributeConstants.UI_ELEMENTS)]
         [SerializeField] private TMP_Text _refreshCostText = default;
         [SerializeField] private CharacterCard[] _characterCards = default;
 
