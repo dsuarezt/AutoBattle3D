@@ -17,8 +17,14 @@ namespace LitLab.CyberTitans.Level
         #region Fields
 
         [SerializeField] private int _goldAmount = default;
+
+        [Range(1, 20)]
         [SerializeField] private int _livesAmount = default;
+
+        [Range(1, 10)]
         [SerializeField] private int _playerLevel = default;
+
+        [Range(1,10)]
         [SerializeField] private int _playerLevelUpgradeCost = default;
 
         #endregion

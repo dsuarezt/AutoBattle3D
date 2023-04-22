@@ -7,6 +7,7 @@
 
 using GivingLife.Debugging;
 using LitLab.CyberTitans.Characters;
+using LitLab.CyberTitans.Level;
 using TMPro;
 using UnityEngine;
 
@@ -23,9 +24,12 @@ namespace LitLab.CyberTitans.Shop
         #region Fields
 
         [SerializeField] private ShopInitialSettingsSO _shopInitialSettings = default;
+        [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
         [SerializeField] private CharacterDataProviderSO _characterDataProvider = default;
         [SerializeField] private TMP_Text _refreshCostText = default;
         [SerializeField] private CharacterCard[] _characterCards = default;
+
+        private int _shopRefreshCost;
 
         #endregion
 
@@ -39,7 +43,8 @@ namespace LitLab.CyberTitans.Shop
 
         private void Start()
         {
-            _refreshCostText.text = _shopInitialSettings.ShopRefreshCost.ToString();
+            _shopRefreshCost = _shopInitialSettings.ShopRefreshCost;
+            _refreshCostText.text = _shopRefreshCost.ToString();
             GenerateNewCards();
         }
 
@@ -49,29 +54,32 @@ namespace LitLab.CyberTitans.Shop
 
         public void Refresh()
         {
-            // TODO: Check if there is enough gold.
-            if (true)
+            bool success = _levelEconomyManager.TryMakePayment(_shopRefreshCost);
+
+            if (success)
             {
                 GenerateNewCards();
+                GLDebug.Log("Generating new cards.", Color.green);
             }
             else
             {
-                GLDebug.Log($"There is not enough gold to refresh the store.");
+                GLDebug.Log("There is not enough gold to refresh the store.");
             }
         }
 
         public bool TryBuyCharacter(CharacterDataSO characterData)
         {
             // TODO: Check if there is enough gold and if there are empty slots in the inventory.
-            bool canBuyCharacter = true;
+            bool canBuyCharacter = _levelEconomyManager.TryMakePayment(characterData.Cost);
 
             if (canBuyCharacter)
             {
                 // TODO: Put the character on the inventory.
+                GLDebug.Log($"Putting the character {characterData.CharacterName} on the inventory.", Color.green);
             }
             else
             {
-                GLDebug.Log($"There is not enough gold or space in the inventory to buy a character.");
+                GLDebug.Log("There is not enough gold or space in the inventory to buy a character.");
             }
 
             return canBuyCharacter;
