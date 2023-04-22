@@ -5,7 +5,9 @@
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
+using GivingLife.Debugging;
 using LitLab.CyberTitans.Characters;
+using TMPro;
 using UnityEngine;
 
 namespace LitLab.CyberTitans.Shop
@@ -20,9 +22,9 @@ namespace LitLab.CyberTitans.Shop
 
         #region Fields
 
+        [SerializeField] private ShopInitialSettingsSO _shopInitialSettings = default;
         [SerializeField] private CharacterDataProviderSO _characterDataProvider = default;
-
-        // TODO:
+        [SerializeField] private TMP_Text _refreshCostText = default;
         [SerializeField] private CharacterCard[] _characterCards = default;
 
         #endregion
@@ -35,7 +37,11 @@ namespace LitLab.CyberTitans.Shop
 
         #region Engine Methods
 
-
+        private void Start()
+        {
+            _refreshCostText.text = _shopInitialSettings.ShopRefreshCost.ToString();
+            GenerateNewCards();
+        }
 
         #endregion
 
@@ -46,10 +52,40 @@ namespace LitLab.CyberTitans.Shop
             // TODO: Check if there is enough gold.
             if (true)
             {
-                foreach (var card in _characterCards)
-                {
-                    card.Refresh(_characterDataProvider.GetRandomCharacterData());
-                }
+                GenerateNewCards();
+            }
+            else
+            {
+                GLDebug.Log($"There is not enough gold to refresh the store.");
+            }
+        }
+
+        public bool TryBuyCharacter(CharacterDataSO characterData)
+        {
+            // TODO: Check if there is enough gold and if there are empty slots in the inventory.
+            bool canBuyCharacter = true;
+
+            if (canBuyCharacter)
+            {
+                // TODO: Put the character on the inventory.
+            }
+            else
+            {
+                GLDebug.Log($"There is not enough gold or space in the inventory to buy a character.");
+            }
+
+            return canBuyCharacter;
+        }
+
+        private void GenerateNewCards()
+        {
+            CharacterDataSO characterData;
+
+            foreach (var card in _characterCards)
+            {
+                characterData = _characterDataProvider.GetRandomCharacterData();
+
+                if (characterData) card.Refresh(characterData);
             }
         }
 

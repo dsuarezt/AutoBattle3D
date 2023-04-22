@@ -2984,6 +2984,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1042121143}
     m_Modifications:
+    - target: {fileID: 828913160138593158, guid: c511121e2e173394d9020016f248224e, type: 3}
+      propertyPath: _shop
+      value: 
+      objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
       value: CaracterCard 5
@@ -3801,6 +3805,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1042121143}
     m_Modifications:
+    - target: {fileID: 828913160138593158, guid: c511121e2e173394d9020016f248224e, type: 3}
+      propertyPath: _shop
+      value: 
+      objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
       value: CaracterCard 3
@@ -5984,6 +5992,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1042121143}
     m_Modifications:
+    - target: {fileID: 828913160138593158, guid: c511121e2e173394d9020016f248224e, type: 3}
+      propertyPath: _shop
+      value: 
+      objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
       value: CaracterCard 2
@@ -8750,6 +8762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86931476fab4f844b665bfec38f48e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shopInitialSettings: {fileID: 11400000, guid: 8c9a6283c58748046918d3dc21ca9cf4, type: 2}
   _characterDataProvider: {fileID: 11400000, guid: 3f230afb79e67b042bfb27878c57397a, type: 2}
   _characterCards:
   - {fileID: 2096681429}
@@ -8757,6 +8770,7 @@ MonoBehaviour:
   - {fileID: 545891508}
   - {fileID: 1748753338}
   - {fileID: 450991004}
+  _refreshCostText: {fileID: 0}
 --- !u!1001 &1055426773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14399,6 +14413,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1042121143}
     m_Modifications:
+    - target: {fileID: 828913160138593158, guid: c511121e2e173394d9020016f248224e, type: 3}
+      propertyPath: _shop
+      value: 
+      objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
       value: CaracterCard 4
@@ -17506,6 +17524,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1042121143}
     m_Modifications:
+    - target: {fileID: 828913160138593158, guid: c511121e2e173394d9020016f248224e, type: 3}
+      propertyPath: _shop
+      value: 
+      objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
       value: CaracterCard 1

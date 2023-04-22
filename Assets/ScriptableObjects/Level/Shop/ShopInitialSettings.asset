@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ee9c0d698c3a2468656e05d8aff97d, type: 3}
+  m_Name: ShopInitialSettings
+  m_EditorClassIdentifier: 
+  _description: Provides the shop initial values. It can be consumed by objects that
+    need to take those values to initialize.
+  _shopRefreshCost: 2

@@ -5,6 +5,7 @@
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
+using GivingLife.Debugging;
 using LitLab.CyberTitans.Characters;
 using TMPro;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace LitLab.CyberTitans.Shop
 
         #region Fields
 
+        [SerializeField] private Shop _shop = default;
         [SerializeField] private GameObject _cardContent = default;
         [SerializeField] private TMP_Text _costText = default;
         [SerializeField] private TMP_Text _characterNameText = default;
@@ -48,18 +50,20 @@ namespace LitLab.CyberTitans.Shop
         public void Refresh(CharacterDataSO characterData)
         {
             _characterData = characterData;
-            _costText.text = _characterData.Cost.ToString();
-            _characterNameText.text = _characterData.CharacterName.ToString();
-            _characterImage.sprite = _characterData.CardImage;
-            ActivateContent(true);
+
+            if (_characterData)
+            {
+                _costText.text = _characterData.Cost.ToString();
+                _characterNameText.text = _characterData.CharacterName.ToString();
+                _characterImage.sprite = _characterData.CardImage;
+                ActivateContent(true);
+            }
         }
 
         public void BuyCharacter()
         {
-            // TODO: Check if there is enough gold and if there are empty slots in the inventory.
-            if (true)
+            if (_shop.TryBuyCharacter(_characterData))
             {
-                // TODO: Put the character on the inventory.
                 ActivateContent(false);
                 _characterData = null;
             }
@@ -67,7 +71,7 @@ namespace LitLab.CyberTitans.Shop
 
         private void ActivateContent(bool value)
         {
-            _cardContent.SetActive(value);
+            _cardContent?.SetActive(value);
         }
 
         #endregion
