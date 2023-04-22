@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc649fc7f92b67b49a496a0f79e0c598, type: 3}
   m_Name: LevelEconomyManager
   m_EditorClassIdentifier: 
-  _description: 
+  _description: 'Manage the resources of the level such as: the amount of gold, the
+    lives and the level of the player. Raises events when one of these resources
+    changes its value.'
+  _onGoldAmountChangedChannel: {fileID: 11400000, guid: cae69254f5ff51f4fbc5288b859efdd6, type: 2}
+  _onLivesAmountChangedChannel: {fileID: 11400000, guid: d7ceb5be2f1d83948bd88ce40d6f3c2a, type: 2}
+  _onPlayerLevelChangedChannel: {fileID: 11400000, guid: 652db9962589245439608130572db169, type: 2}

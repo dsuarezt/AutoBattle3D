@@ -7,7 +7,7 @@
 
 using GivingLife.Debugging;
 using LitLab.CyberTitans.Shared;
-using Newtonsoft.Json.Linq;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace LitLab.CyberTitans.Level
@@ -22,6 +22,15 @@ namespace LitLab.CyberTitans.Level
         #endregion
 
         #region Fields
+
+        [BoxGroup(AttributeConstants.BROADCASTING_ON)]
+        [SerializeField] private IntEventChannelSO _onGoldAmountChangedChannel = default;
+
+        [BoxGroup(AttributeConstants.BROADCASTING_ON)]
+        [SerializeField] private IntEventChannelSO _onLivesAmountChangedChannel = default;
+
+        [BoxGroup(AttributeConstants.BROADCASTING_ON)]
+        [SerializeField] private IntEventChannelSO _onPlayerLevelChangedChannel = default;
 
         private LevelEconomyInitialSettingsSO _levelEconomyInitialSettings = default;
         private int _goldAmount;
@@ -39,7 +48,7 @@ namespace LitLab.CyberTitans.Level
             {
                 GLDebug.Log($"Updating {nameof(GoldAmount)} from {_goldAmount} to {value}.", Color.green);
                 _goldAmount = value;
-                // TODO: Rise event.
+                _onGoldAmountChangedChannel.RaiseEvent(this, value);
             }
         }
 
@@ -50,7 +59,7 @@ namespace LitLab.CyberTitans.Level
             {
                 GLDebug.Log($"Updating {nameof(LivesAmount)} from {_livesAmount} to {value}.", Color.green);
                 _livesAmount = value;
-                // TODO: Rise event.
+                _onLivesAmountChangedChannel.RaiseEvent(this, value);
             }
         }
 
@@ -61,7 +70,7 @@ namespace LitLab.CyberTitans.Level
             {
                 GLDebug.Log($"Updating {nameof(PlayerLevel)} from {_playerLevel} to {value}.", Color.green);
                 _playerLevel = value;
-                // TODO: Rise event.
+                _onPlayerLevelChangedChannel.RaiseEvent(this, value);
             }
         }
 
