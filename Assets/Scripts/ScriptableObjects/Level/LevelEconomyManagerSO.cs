@@ -85,7 +85,7 @@ namespace LitLab.CyberTitans.Level
             _livesAmount = _levelEconomyInitialSettings.LivesAmount;
             _playerLevel = _levelEconomyInitialSettings.PlayerLevel;
 
-            GLDebug.Log($"Initializing {nameof(LevelEconomyManagerSO)}.", Color.yellow);
+            GLDebug.Log($"Initializing {nameof(LevelEconomyManagerSO)}.", Color.cyan);
         }
 
         public bool CanMakePayment(int amount)

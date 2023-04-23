@@ -5,15 +5,16 @@
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
+using System;
 using System.Linq;
 using LitLab.CyberTitans.Characters;
-using LitLab.CyberTitans.Level;
 using LitLab.CyberTitans.Shared;
+using LitLab.CyberTitans.Slots;
 using UnityEngine;
 
 namespace LitLab.CyberTitans.InventorySystem
 {
-    public class Inventory : MonoBehaviour
+    public class Inventory : MonoBehaviour, ISlotAuthorizer
     {
         #region Fields
 
@@ -28,12 +29,19 @@ namespace LitLab.CyberTitans.InventorySystem
         #region Properties
 
         public bool AnyEmptySlot => GetFirstEmptySlot();
+        public bool CanReceiveACharacter => true;
 
         #endregion
 
         #region Engine Methods
 
-
+        private void Awake()
+        {
+            foreach (var slot in _slots)
+            {
+                slot.SlotAuthorizer = this;
+            }
+        }
 
         #endregion
 
@@ -46,6 +54,7 @@ namespace LitLab.CyberTitans.InventorySystem
             if (slot)
             {
                 Character character = _characterSpawner.SpawnCharacter(characterData);
+                character?.gameObject.AddComponent<CharacterSelector>();
                 slot.AddCharacter(character);
             }
         }

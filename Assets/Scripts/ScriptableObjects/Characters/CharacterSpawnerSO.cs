@@ -5,6 +5,7 @@
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
+using GivingLife.Debugging;
 using LitLab.CyberTitans.Shared;
 using UnityEngine;
 
@@ -15,16 +16,15 @@ namespace LitLab.CyberTitans.Characters
     {
         #region Methods
 
-        public Character SpawnCharacter(CharacterDataSO characterData,
-                                   Transform parent = null)
+        public Character SpawnCharacter(CharacterDataSO characterData, Transform parent = null)
         {
             return SpawnCharacter(characterData, Vector3.zero, Quaternion.identity, parent);
         }
 
         public Character SpawnCharacter(CharacterDataSO characterData,
-                                   Vector3 position,
-                                   Quaternion rotation,
-                                   Transform parent = null)
+                                        Vector3 position,
+                                        Quaternion rotation,
+                                        Transform parent = null)
         {
             Character characterPrefab = characterData?.CharacterPrefab;
             Character character = null;

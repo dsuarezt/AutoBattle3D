@@ -35,12 +35,6 @@ namespace LitLab.CyberTitans.Shop
 
         #endregion
 
-        #region Properties
-
-
-
-        #endregion
-
         #region Engine Methods
 
         private void Start()
@@ -65,7 +59,7 @@ namespace LitLab.CyberTitans.Shop
             }
             else
             {
-                GLDebug.Log("There is not enough gold to refresh the store.");
+                GLDebug.Log("There is not enough gold to refresh the store.", Color.red);
             }
         }
 
@@ -95,7 +89,10 @@ namespace LitLab.CyberTitans.Shop
             {
                 characterData = _characterDataProvider.GetRandomCharacterData();
 
-                if (characterData) card.Refresh(characterData);
+                if (characterData)
+                {
+                    card.Refresh(characterData);
+                }
             }
         }
 
