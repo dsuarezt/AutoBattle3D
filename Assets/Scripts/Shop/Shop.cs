@@ -76,6 +76,10 @@ namespace LitLab.CyberTitans.Shop
 
                     return true;
                 }
+                else
+                {
+                    GLDebug.Log("There is not enough gold to buy a character.", Color.red);
+                }
             }
             else
             {

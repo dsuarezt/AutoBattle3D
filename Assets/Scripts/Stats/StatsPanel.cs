@@ -67,7 +67,7 @@ namespace LitLab.CyberTitans.Level
             }
             else
             {
-                GLDebug.Log("There is not enough gold to upgrade the player level.");
+                GLDebug.Log("There is not enough gold to upgrade the player level.", Color.red);
             }
         }
 

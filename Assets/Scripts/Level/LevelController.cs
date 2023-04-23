@@ -17,12 +17,13 @@ namespace LitLab.CyberTitans.Level
         [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
         [SerializeField] private LevelEconomyInitialSettingsSO _levelEconomyInitialSettings = default;
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
+        [SerializeField] private SelectionControllerSO _selectionController = default;
 
         #endregion
 
         #region Properties
 
-
+        
 
         #endregion
 
@@ -30,17 +31,15 @@ namespace LitLab.CyberTitans.Level
 
         private void Awake()
         {
-            InitializeLevelEconomy();
+            _levelEconomyManager?.Initialize(_levelEconomyInitialSettings);
+            _selectionController?.Initialize();
         }
 
         #endregion
 
         #region Methods
 
-        private void InitializeLevelEconomy()
-        {
-            _levelEconomyManager?.Initialize(_levelEconomyInitialSettings);
-        }
+        
 
         #endregion
     }

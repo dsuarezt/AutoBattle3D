@@ -157,7 +157,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508834460afd60944a07be2db7ab46f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _base: {fileID: 5627530842847809972}
+  _baseCollider: {fileID: 4404118779393973372}
   _spawnPoint: {fileID: 3065796866705495081}
+  _onSelectCharacterChannel: {fileID: 11400000, guid: 878a3680e06636a41bfc444bddd63296, type: 2}
+  _onDeselectCharacterChannel: {fileID: 11400000, guid: bf78ad5e971f809499cbf8a2ad18d4e1, type: 2}
+  _onMouseEnterChannel: {fileID: 11400000, guid: 4fabaf49c75e7f74292b158b47a40046, type: 2}
+  _onMouseExitChannel: {fileID: 11400000, guid: 1358eeb0c178c414a9ebab282db5c832, type: 2}
 --- !u!65 &4404118779393973372
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -11,14 +11,9 @@ namespace LitLab.CyberTitans.Slots
 {
     public interface ISlotController
     {
-        #region Properties
-
-        bool CanReceiveACharacter { get; }
-
-        #endregion
-
         #region Methods
 
+        bool CanReceiveACharacter(Character character);
         void OnCharacterAddedToSlot(Character character);
         void OnCharacterRemovedFromSlot(Character character);
 

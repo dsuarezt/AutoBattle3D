@@ -43,6 +43,11 @@ namespace LitLab.CyberTitans.Characters
             name = characterData.CharacterName;
         }
 
+        public void Reset()
+        {
+
+        }
+
         #endregion
     }
 }
