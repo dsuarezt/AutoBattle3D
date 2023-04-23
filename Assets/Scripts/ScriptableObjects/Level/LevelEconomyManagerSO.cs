@@ -15,12 +15,6 @@ namespace LitLab.CyberTitans.Level
     [CreateAssetMenu(fileName = "LevelEconomyManager", menuName = "CyberTitans/Level/Level Economy Manager")]
     public class LevelEconomyManagerSO : DescriptionBaseSO, IScriptableObjectResettable
     {
-        #region Constants
-
-
-
-        #endregion
-
         #region Fields
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]

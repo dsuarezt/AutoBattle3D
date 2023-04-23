@@ -27,8 +27,8 @@ namespace LitLab.CyberTitans.Slots
         #region Properties
 
         public bool IsEmpty => _character == null;
-        public ISlotAuthorizer SlotAuthorizer { get; set; }
-        public bool CanReceiveACharacter => SlotAuthorizer.CanReceiveACharacter;
+        public ISlotController SlotController { get; set; }
+        public bool CanReceiveACharacter => SlotController.CanReceiveACharacter;
 
         #endregion
 
@@ -50,6 +50,8 @@ namespace LitLab.CyberTitans.Slots
                     _characterSelector.Slot = this;
                     SubscribeToSelectionEvents();
                 }
+
+                SlotController.OnCharacterAddedToSlot(_character);
             }
         }
 

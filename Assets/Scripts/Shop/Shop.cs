@@ -77,6 +77,10 @@ namespace LitLab.CyberTitans.Shop
                     return true;
                 }
             }
+            else
+            {
+                GLDebug.Log("There are no empty slots in the inventory.", Color.red);
+            }
 
             return false;
         }

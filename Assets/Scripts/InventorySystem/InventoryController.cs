@@ -5,6 +5,8 @@
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Shared;
@@ -13,7 +15,7 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Inventory
 {
-    public class InventoryController : MonoBehaviour, ISlotAuthorizer
+    public class InventoryController : MonoBehaviour, ISlotController
     {
         #region Fields
 
@@ -23,11 +25,13 @@ namespace LitLab.CyberTitans.Inventory
         [Space(5)]
         [SerializeField] private Slot[] _slots = default;
 
+        private IList<Character> _characters = new List<Character>();
+
         #endregion
 
         #region Properties
 
-        public bool AnyEmptySlot => GetFirstEmptySlot();
+        public bool AnyEmptySlot => _slots.Length > _characters.Count;
         public bool CanReceiveACharacter => true;
 
         #endregion
@@ -38,7 +42,7 @@ namespace LitLab.CyberTitans.Inventory
         {
             foreach (var slot in _slots)
             {
-                slot.SlotAuthorizer = this;
+                slot.SlotController = this;
             }
         }
 
@@ -48,14 +52,30 @@ namespace LitLab.CyberTitans.Inventory
 
         public void AddCharacter(CharacterDataSO characterData)
         {
-            Slot slot = GetFirstEmptySlot();
-
-            if (slot)
+            if (AnyEmptySlot)
             {
-                Character character = _characterSpawner.SpawnCharacter(characterData);
-                character?.gameObject.AddComponent<CharacterSelector>();
-                slot.AddCharacter(character);
+                Slot slot = GetFirstEmptySlot();
+
+                if (slot)
+                {
+                    Character character = _characterSpawner.SpawnCharacter(characterData);
+                    character?.gameObject.AddComponent<CharacterSelector>();
+                    slot.AddCharacter(character);
+                }
             }
+        }
+
+        public void OnCharacterAddedToSlot(Character character)
+        {
+            if (!_characters.Contains(character))
+            {
+                _characters.Add(character);
+            }
+        }
+
+        public void OnCharacterRemovedFromSlot(Character character)
+        {
+            _characters.Remove(character);
         }
 
         private Slot GetFirstEmptySlot()
