@@ -7,7 +7,7 @@
 
 using GivingLife.Debugging;
 using LitLab.CyberTitans.Characters;
-using LitLab.CyberTitans.InventorySystem;
+using LitLab.CyberTitans.Inventory;
 using LitLab.CyberTitans.Level;
 using LitLab.CyberTitans.Shared;
 using TMPro;
@@ -29,7 +29,7 @@ namespace LitLab.CyberTitans.Shop
         [SerializeField] private CharacterCard[] _characterCards = default;
 
         [Header(AttributeConstants.INVENTORY_SYSTEM)]
-        [SerializeField] private Inventory _inventory = default;
+        [SerializeField] private InventoryController _inventory = default;
 
         private int _shopRefreshCost;
 

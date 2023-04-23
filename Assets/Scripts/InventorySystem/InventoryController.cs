@@ -1,20 +1,19 @@
 //-----------------------------------------------------------------------
-// File name: Inventory.cs
+// File name: InventoryController.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
-using System;
 using System.Linq;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Shared;
 using LitLab.CyberTitans.Slots;
 using UnityEngine;
 
-namespace LitLab.CyberTitans.InventorySystem
+namespace LitLab.CyberTitans.Inventory
 {
-    public class Inventory : MonoBehaviour, ISlotAuthorizer
+    public class InventoryController : MonoBehaviour, ISlotAuthorizer
     {
         #region Fields
 
