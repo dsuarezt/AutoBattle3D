@@ -44,7 +44,7 @@ namespace LitLab.CyberTitans.Level
             _gameObject = gameObject;
             _cancellationTokenSource = new CancellationTokenSource();
             _cancellationToken = _cancellationTokenSource.Token;
-            FollowMouse().Forget();
+            FollowMouseAsync().Forget();
         }
 
         public void Cancel()
@@ -53,7 +53,7 @@ namespace LitLab.CyberTitans.Level
             _cancellationTokenSource.Cancel();
         }
 
-        private async UniTask FollowMouse()
+        private async UniTask FollowMouseAsync()
         {
             while (!_cancellationToken.IsCancellationRequested)
             {

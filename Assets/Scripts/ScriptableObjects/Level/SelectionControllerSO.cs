@@ -47,9 +47,12 @@ namespace LitLab.CyberTitans.Level
             _objectToMousePosition = new ObjectToMousePosition(_interceptorLayerMask);
         }
 
-
-
         public void ResetOnExitPlayMode()
+        {
+            Reset();
+        }
+
+        public void Reset()
         {
             UnregisterListeners();
             _currentSlot = null;
