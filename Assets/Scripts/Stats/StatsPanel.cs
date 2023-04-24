@@ -55,7 +55,7 @@ namespace LitLab.CyberTitans.Level
 
         #region Methods
 
-        public void UpgradePlayerLevel()
+        public void UpgradePlayerLevel() // It's called from a UI Button.
         {
             int upgradeCost = _initialSettings.PlayerLevelUpgradeCost;
             bool success = _levelEconomyManager.TryMakePayment(upgradeCost);

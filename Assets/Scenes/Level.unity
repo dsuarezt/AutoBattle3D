@@ -3082,7 +3082,7 @@ PrefabInstance:
       objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
-      value: CaracterCard 5
+      value: Card 5
       objectReference: {fileID: 0}
     - target: {fileID: 8479370788158940018, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Pivot.x
@@ -3947,7 +3947,7 @@ PrefabInstance:
       objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
-      value: CaracterCard 3
+      value: Card 3
       objectReference: {fileID: 0}
     - target: {fileID: 8479370788158940018, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Pivot.x
@@ -4933,7 +4933,7 @@ GameObject:
   - component: {fileID: 685043395}
   - component: {fileID: 685043394}
   m_Layer: 5
-  m_Name: GameUI
+  m_Name: LevelUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6290,7 +6290,7 @@ PrefabInstance:
       objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
-      value: CaracterCard 2
+      value: Card 2
       objectReference: {fileID: 0}
     - target: {fileID: 8479370788158940018, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Pivot.x
@@ -9137,7 +9137,7 @@ MonoBehaviour:
   _levelEconomyManager: {fileID: 11400000, guid: 5e4d2adc90da8ce428f1d8541ef178e0, type: 2}
   _characterDataProvider: {fileID: 11400000, guid: 3f230afb79e67b042bfb27878c57397a, type: 2}
   _refreshCostText: {fileID: 1453408246}
-  _characterCards:
+  _cards:
   - {fileID: 2096681429}
   - {fileID: 870116949}
   - {fileID: 545891508}
@@ -15100,7 +15100,7 @@ PrefabInstance:
       objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
-      value: CaracterCard 4
+      value: Card 4
       objectReference: {fileID: 0}
     - target: {fileID: 8479370788158940018, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Pivot.x
@@ -18489,7 +18489,7 @@ PrefabInstance:
       objectReference: {fileID: 1042121147}
     - target: {fileID: 3504807401163545797, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Name
-      value: CaracterCard 1
+      value: Card 1
       objectReference: {fileID: 0}
     - target: {fileID: 8479370788158940018, guid: c511121e2e173394d9020016f248224e, type: 3}
       propertyPath: m_Pivot.x

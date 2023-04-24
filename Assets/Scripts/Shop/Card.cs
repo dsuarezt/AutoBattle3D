@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: CharacterCard.cs
+// File name: Card.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 22, 2023
@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 namespace LitLab.CyberTitans.Shop
 {
-    public class CharacterCard : MonoBehaviour
+    public class Card : MonoBehaviour
     {
         #region Fields
 
@@ -44,13 +44,9 @@ namespace LitLab.CyberTitans.Shop
             }
         }
 
-        public void BuyCharacter()
+        public void BuyCharacter() // It's called from a UI Button.
         {
-            if (_shop.TryBuyCharacter(_characterData))
-            {
-                ActivateContent(false);
-                _characterData = null;
-            }
+            _shop.BuyCharacter(_characterData, this);
         }
 
         private void ActivateContent(bool value)

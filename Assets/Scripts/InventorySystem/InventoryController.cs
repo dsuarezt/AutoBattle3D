@@ -71,7 +71,8 @@ namespace LitLab.CyberTitans.Inventory
                 if (slot)
                 {
                     Character character = _characterSpawner.SpawnCharacter(characterData);
-                    character?.gameObject.AddComponent<CharacterSelector>();
+                    var characterSelector = character?.gameObject.AddComponent<CharacterSelector>();
+                    characterSelector?.Initialize(_onSelectCharacterChannel, _onDeselectCharacterChannel);
                     slot.AddNewCharacter(character);
                 }
             }

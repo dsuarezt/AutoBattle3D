@@ -26,12 +26,13 @@ namespace LitLab.CyberTitans.Shop
 
         [Header(AttributeConstants.UI_ELEMENTS)]
         [SerializeField] private TMP_Text _refreshCostText = default;
-        [SerializeField] private CharacterCard[] _characterCards = default;
+        [SerializeField] private Card[] _cards = default;
 
         [Header(AttributeConstants.INVENTORY_SYSTEM)]
         [SerializeField] private InventoryController _inventory = default;
 
         private int _shopRefreshCost;
+        private CharacterDataSO _temCharacterData;
 
         #endregion
 
@@ -48,7 +49,7 @@ namespace LitLab.CyberTitans.Shop
 
         #region Methods
 
-        public void Refresh()
+        public void Refresh() // It's called from a UI Button.
         {
             bool success = _levelEconomyManager.TryMakePayment(_shopRefreshCost);
 
@@ -63,7 +64,7 @@ namespace LitLab.CyberTitans.Shop
             }
         }
 
-        public bool TryBuyCharacter(CharacterDataSO characterData)
+        public void BuyCharacter(CharacterDataSO characterData, Card card)
         {
             if (_inventory.AnyEmptySlot)
             {
@@ -74,7 +75,7 @@ namespace LitLab.CyberTitans.Shop
                     _inventory.AddCharacter(characterData);
                     GLDebug.Log($"Putting the character {characterData.CharacterName} on the inventory.", Color.green);
 
-                    return true;
+                    GenerateNewCard(card);
                 }
                 else
                 {
@@ -85,25 +86,28 @@ namespace LitLab.CyberTitans.Shop
             {
                 GLDebug.Log("There are no empty slots in the inventory.", Color.red);
             }
-
-            return false;
         }
 
         private void GenerateNewCards()
         {
-            CharacterDataSO characterData;
-
-            foreach (var card in _characterCards)
+            foreach (var card in _cards)
             {
-                characterData = _characterDataProvider.GetRandomCharacterData();
+                GenerateNewCard(card);
+            }
+        }
 
-                if (characterData)
-                {
-                    card.Refresh(characterData);
-                }
+        private void GenerateNewCard(Card card)
+        {
+            _temCharacterData = _characterDataProvider.GetRandomCharacterData();
+
+            if (_temCharacterData)
+            {
+                card.Refresh(_temCharacterData);
+                _temCharacterData = null;
             }
         }
 
         #endregion
     }
 }
+

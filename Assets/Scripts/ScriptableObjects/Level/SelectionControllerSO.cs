@@ -18,7 +18,7 @@ namespace LitLab.CyberTitans.Level
     {
         #region Fields
 
-        [SerializeField] private LayerMask _interceptorLayerMask;
+        [SerializeField] private LayerMask _interceptorLayerMask = default;
 
         [BoxGroup(AttributeConstants.LISTENING_TO)]
         [SerializeField] private SlotEventChannelSO _onSelectCharacterChannel = default;
@@ -46,6 +46,8 @@ namespace LitLab.CyberTitans.Level
             RegisterListeners();
             _objectToMousePosition = new ObjectToMousePosition(_interceptorLayerMask);
         }
+
+
 
         public void ResetOnExitPlayMode()
         {
@@ -84,8 +86,7 @@ namespace LitLab.CyberTitans.Level
             {
                 if (!_targetSlot)
                 {
-                    // Return the character to the center of its slot.
-                    _currentSlot.ResetCharacter();
+                    ReturnCharacterToItsSlot();
                 }
                 else if (_targetSlot.IsEmpty)
                 {
@@ -95,7 +96,7 @@ namespace LitLab.CyberTitans.Level
                     }
                     else
                     {
-                        _currentSlot.ResetCharacter();
+                        ReturnCharacterToItsSlot();
                     }
                 }
                 else if (!_targetSlot.IsEmpty)
@@ -103,6 +104,11 @@ namespace LitLab.CyberTitans.Level
                     SwapCharacters();
                 }
             }
+        }
+
+        private void ReturnCharacterToItsSlot()
+        {
+            _currentSlot.ResetCharacter();
         }
 
         private void MoveCharacterToTargetSlot()
