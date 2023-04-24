@@ -76,8 +76,8 @@ namespace LitLab.CyberTitans.Slots
         {
             if (character)
             {
-                // It is necessary to unsubscribe from the current character selection events.
-                UnsubscribeToSelectionEvents();
+                // Before adding a new character it is necessary to remove the previous one in case it existed.
+                RemoveCharacter();
 
                 _character = character;
                 _character?.transform.SetParent(_spawnPoint);
