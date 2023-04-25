@@ -26,7 +26,9 @@ namespace LitLab.CyberTitans.Level
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
         [SerializeField] private IntEventChannelSO _onPlayerLevelChangedChannel = default;
 
-        private LevelEconomyInitialSettingsSO _levelEconomyInitialSettings = default;
+        [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
+        [SerializeField] private LevelEconomySettingsSO _levelEconomySettings = default;
+
         private int _goldAmount;
         private int _livesAmount;
         private int _playerLevel;
@@ -72,12 +74,11 @@ namespace LitLab.CyberTitans.Level
 
         #region Methods
 
-        public void Initialize(LevelEconomyInitialSettingsSO levelEconomyInitialSettings)
+        public void Initialize()
         {
-            _levelEconomyInitialSettings = levelEconomyInitialSettings;
-            _goldAmount = _levelEconomyInitialSettings.GoldAmount;
-            _livesAmount = _levelEconomyInitialSettings.LivesAmount;
-            _playerLevel = _levelEconomyInitialSettings.PlayerLevel;
+            _goldAmount = _levelEconomySettings.GoldAmount;
+            _livesAmount = _levelEconomySettings.LivesAmount;
+            _playerLevel = _levelEconomySettings.PlayerLevel;
 
             GLDebug.Log($"Initializing {nameof(LevelEconomyManagerSO)}.", Color.cyan);
         }
@@ -121,7 +122,6 @@ namespace LitLab.CyberTitans.Level
 
         public void Reset()
         {
-            _levelEconomyInitialSettings = null;
             _goldAmount = 0;
             _livesAmount = 0;
             _playerLevel = 0;

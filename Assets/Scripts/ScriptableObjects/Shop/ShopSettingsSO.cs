@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: ShopInitialSettingsSO.cs
+// File name: ShopSettingsSO.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 22, 2023
@@ -10,8 +10,8 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Shop
 {
-	[CreateAssetMenu(fileName = "ShopInitialSettings", menuName = "CyberTitans/Shop/Shop Initial Settings")]
-    public class ShopInitialSettingsSO : DescriptionBaseSO
+	[CreateAssetMenu(fileName = "ShopSettings", menuName = "CyberTitans/Shop/Shop Settings")]
+    public class ShopSettingsSO : DescriptionBaseSO
 	{
         #region Constants
 

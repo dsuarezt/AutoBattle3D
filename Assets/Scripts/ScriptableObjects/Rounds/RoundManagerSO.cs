@@ -19,7 +19,7 @@ namespace LitLab.CyberTitans.Rounds
     {
         #region Fields
 
-        [SerializeField] private RoundInitialSettingsSO _initialSettings = default;
+        [SerializeField] private RoundSettingsSO _initialSettings = default;
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
         [SerializeField] private IntEventChannelSO _onPreparationTimeChangedChannel = default;

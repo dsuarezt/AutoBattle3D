@@ -18,3 +18,4 @@ MonoBehaviour:
   _onGoldAmountChangedChannel: {fileID: 11400000, guid: cae69254f5ff51f4fbc5288b859efdd6, type: 2}
   _onLivesAmountChangedChannel: {fileID: 11400000, guid: d7ceb5be2f1d83948bd88ce40d6f3c2a, type: 2}
   _onPlayerLevelChangedChannel: {fileID: 11400000, guid: 652db9962589245439608130572db169, type: 2}
+  _levelEconomySettings: {fileID: 11400000, guid: 5548dcd99b3942a47b1fd75fcbcb4733, type: 2}

@@ -18,7 +18,7 @@ namespace LitLab.CyberTitans.Level
         #region Fields
 
         [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
-        [SerializeField] private LevelEconomyInitialSettingsSO _initialSettings = default;
+        [SerializeField] private LevelEconomySettingsSO _levelEconomySettings = default;
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
 
         [Header(AttributeConstants.UI_ELEMENTS)]
@@ -57,7 +57,7 @@ namespace LitLab.CyberTitans.Level
 
         public void UpgradePlayerLevel() // It's called from a UI Button.
         {
-            int upgradeCost = _initialSettings.PlayerLevelUpgradeCost;
+            int upgradeCost = _levelEconomySettings.PlayerLevelUpgradeCost;
             bool success = _levelEconomyManager.TryMakePayment(upgradeCost);
 
             if (success)
@@ -102,10 +102,10 @@ namespace LitLab.CyberTitans.Level
 
         private void InitializeUI()
         {
-            _goldAmountText.text = _initialSettings.GoldAmount.ToString();
-            _livesAmountText.text = _initialSettings.LivesAmount.ToString();
-            _playerLevelText.text = _initialSettings.PlayerLevel.ToString();
-            _upgradeCostText.text = _initialSettings.PlayerLevelUpgradeCost.ToString();
+            _goldAmountText.text = _levelEconomySettings.GoldAmount.ToString();
+            _livesAmountText.text = _levelEconomySettings.LivesAmount.ToString();
+            _playerLevelText.text = _levelEconomySettings.PlayerLevel.ToString();
+            _upgradeCostText.text = _levelEconomySettings.PlayerLevelUpgradeCost.ToString();
         }
 
         #endregion

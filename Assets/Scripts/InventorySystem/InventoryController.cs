@@ -5,7 +5,6 @@
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
-using System;
 using System.Linq;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Shared;
@@ -22,7 +21,7 @@ namespace LitLab.CyberTitans.Inventory
         [BoxGroup(AttributeConstants.LISTENING_TO)]
         [SerializeField] private VoidEventChannelSO _onCancelSelectionChannel = default;
 
-        [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
+        [Space(5)]
         [SerializeField] private CharacterSpawnerSO _characterSpawner = default;
 
         #endregion

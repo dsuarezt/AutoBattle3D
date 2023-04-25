@@ -5,6 +5,7 @@
 // Created on: April 23, 2023
 //-----------------------------------------------------------------------
 
+using System.Runtime.Remoting.Messaging;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Level;
 using LitLab.CyberTitans.Shared;

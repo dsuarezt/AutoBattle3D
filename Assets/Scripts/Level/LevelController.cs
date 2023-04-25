@@ -19,7 +19,6 @@ namespace LitLab.CyberTitans.Level
         #region Fields
 
         [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
-        [SerializeField] private LevelEconomyInitialSettingsSO _levelEconomyInitialSettings = default;
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
         [SerializeField] private SelectionControllerSO _selectionController = default;
         [SerializeField] private RoundManagerSO _roundManagerSO = default;
@@ -72,7 +71,7 @@ namespace LitLab.CyberTitans.Level
 
         public void Initialize()
         {
-            _levelEconomyManager?.Initialize(_levelEconomyInitialSettings);
+            _levelEconomyManager?.Initialize();
             _selectionController?.Initialize();
             _roundManagerSO?.Initialize();
         }

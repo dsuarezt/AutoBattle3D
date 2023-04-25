@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 161bc539c53b4844bba8e3d9b80bef5c, type: 3}
-  m_Name: LevelEconomyInitialSettings
+  m_Name: LevelEconomySetting
   m_EditorClassIdentifier: 
   _description: Provides the level economy initial values. It can be consumed by
     objects that need to take those values to initialize.

@@ -20,7 +20,7 @@ namespace LitLab.CyberTitans.Shop
         #region Fields
 
         [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
-        [SerializeField] private ShopInitialSettingsSO _shopInitialSettings = default;
+        [SerializeField] private ShopSettingsSO _initialSettings = default;
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
         [SerializeField] private CharacterDataProviderSO _characterDataProvider = default;
 
@@ -40,7 +40,7 @@ namespace LitLab.CyberTitans.Shop
 
         private void Start()
         {
-            _shopRefreshCost = _shopInitialSettings.ShopRefreshCost;
+            _shopRefreshCost = _initialSettings.ShopRefreshCost;
             _refreshCostText.text = _shopRefreshCost.ToString();
             GenerateNewCards();
         }

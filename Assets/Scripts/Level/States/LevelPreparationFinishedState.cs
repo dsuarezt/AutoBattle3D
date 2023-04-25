@@ -36,15 +36,7 @@ namespace LitLab.CyberTitans.Level
 
             if (!cancellationToken.IsCancellationRequested)
             {
-                if (_levelController.RoundManager.IsTheLastRound)
-                {
-                    // TODO:
-                    // _levelController.ChangeState(nameof(LevelFinishedState));
-                }
-                else
-                {
-                    _levelController.ChangeState(nameof(LevelPreparationStartedState));
-                }
+                _levelController.ChangeState(nameof(LevelPreparationStartedState));
             }
         }
 

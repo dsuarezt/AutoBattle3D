@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: LevelEconomyInitialSettingsSO.cs
+// File name: LevelEconomySettingsSO.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 22, 2023
@@ -10,9 +10,8 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Level
 {
-    [CreateAssetMenu(fileName = "LevelEconomyInitialSettings",
-        menuName = "CyberTitans/Level/Level Economy Initial Settings")]
-    public class LevelEconomyInitialSettingsSO : DescriptionBaseSO
+    [CreateAssetMenu(fileName = "LevelEconomySettings", menuName = "CyberTitans/Level/Level Economy Settings")]
+    public class LevelEconomySettingsSO : DescriptionBaseSO
     {
         #region Fields
 
@@ -24,7 +23,7 @@ namespace LitLab.CyberTitans.Level
         [Range(1, 10)]
         [SerializeField] private int _playerLevel = default;
 
-        [Range(1,10)]
+        [Range(1, 10)]
         [SerializeField] private int _playerLevelUpgradeCost = default;
 
         #endregion
