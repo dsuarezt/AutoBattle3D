@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: LevelBattleState.cs
+// File name: LevelPreparationFinishedState.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 25, 2023
@@ -10,23 +10,11 @@ using System.Threading;
 
 namespace LitLab.CyberTitans.Level
 {
-    public class LevelBattleState : LevelStateBase
+    public class LevelPreparationFinishedState : LevelStateBase
     {
-        #region Fields
-
-
-
-        #endregion
-
-        #region Properties
-
-
-
-        #endregion
-
         #region Constructors
 
-        public LevelBattleState(LevelController levelController) : base(levelController)
+        public LevelPreparationFinishedState(LevelController levelController) : base(levelController)
         {
         }
 
@@ -36,15 +24,15 @@ namespace LitLab.CyberTitans.Level
 
         public override void Enter()
         {
-            StartBattlePhaseAsync().Forget();
+            FinishPreparationPhaseAsync().Forget();
         }
 
-        private async UniTask StartBattlePhaseAsync()
+        private async UniTask FinishPreparationPhaseAsync()
         {
-            _levelController.OnBattlePhaseStartedChannel?.RaiseEvent();
+            _levelController.OnPreparationPhaseFinishedChannel?.RaiseEvent();
 
-            CancellationToken cancellationToken = _levelController.GetCancellationTokenOnDestroy();
-            await _levelController.RoundManager.StartPreparationPhaseAsync(cancellationToken);
+            CancellationToken cancellationToken = _levelController.GetCancellationToken();
+            await _levelController.RoundManager.FinishPreparationPhaseAsync(cancellationToken);
 
             if (!cancellationToken.IsCancellationRequested)
             {
@@ -55,7 +43,7 @@ namespace LitLab.CyberTitans.Level
                 }
                 else
                 {
-                    _levelController.ChangeState(nameof(LevelPreparationState));
+                    _levelController.ChangeState(nameof(LevelPreparationStartedState));
                 }
             }
         }

@@ -7,7 +7,6 @@
 
 using System;
 using GivingLife.Debugging;
-using LitLab.CyberTitans.Shared;
 using LitLab.CyberTitans.Slots;
 using UnityEngine;
 
@@ -18,8 +17,6 @@ namespace LitLab.CyberTitans.Characters
         #region Fields
 
         private Collider _collider;
-        private SlotEventChannelSO _onSelectCharacterChannel; // Listening on
-        private SlotEventChannelSO _onDeselectCharacterChannel; // Listening on
 
         #endregion
 
@@ -55,43 +52,13 @@ namespace LitLab.CyberTitans.Characters
             OnDeselectEvent?.Invoke();
         }
 
-        private void OnDestroy()
-        {
-            UnregisterListeners();
-        }
-
         #endregion
 
         #region Methods
 
-        public void Initialize(SlotEventChannelSO onSelectCharacterChannel,
-                               SlotEventChannelSO onDeselectCharacterChannel)
+        public void SetActive(bool value)
         {
-            _onSelectCharacterChannel = onSelectCharacterChannel;
-            _onDeselectCharacterChannel = onDeselectCharacterChannel;
-            RegisterListeners();
-        }
-
-        private void RegisterListeners()
-        {
-            _onSelectCharacterChannel.OnEventRaised += OnSelectCharacter;
-            _onDeselectCharacterChannel.OnEventRaised += OnDeselectCharacter;
-        }
-
-        private void UnregisterListeners()
-        {
-            _onSelectCharacterChannel.OnEventRaised -= OnSelectCharacter;
-            _onDeselectCharacterChannel.OnEventRaised -= OnDeselectCharacter;
-        }
-
-        private void OnSelectCharacter(object sender, Slot slot)
-        {
-            _collider.enabled = false;
-        }
-
-        private void OnDeselectCharacter(object sender, Slot slot)
-        {
-            _collider.enabled = true;
+            _collider.enabled = value;
         }
 
         #endregion

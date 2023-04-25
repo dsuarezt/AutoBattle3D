@@ -42,7 +42,7 @@ namespace LitLab.CyberTitans.Slots
 
         public Character Character => _character;
         public bool IsEmpty => _character == null;
-        public ISlotController SlotController { get; set; }
+        public ISlotsController SlotController { get; set; }
 
         #endregion
 

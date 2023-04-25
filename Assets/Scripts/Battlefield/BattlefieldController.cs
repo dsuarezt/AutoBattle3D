@@ -5,7 +5,6 @@
 // Created on: April 23, 2023
 //-----------------------------------------------------------------------
 
-using System.Collections.Generic;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Level;
 using LitLab.CyberTitans.Shared;
@@ -15,92 +14,96 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Battlefield
 {
-    public class BattlefieldController : MonoBehaviour, ISlotController
+    public class BattlefieldController : SlotsControllerBase
     {
         #region Fields
 
-        [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
-        [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
+        [BoxGroup(AttributeConstants.LISTENING_TO)]
+        [SerializeField] private VoidEventChannelSO _onPreparationPhaseStartedChannel = default;
 
         [BoxGroup(AttributeConstants.LISTENING_TO)]
-        [SerializeField] private SlotEventChannelSO _onSelectCharacterChannel = default;
+        [SerializeField] private VoidEventChannelSO _onPreparationPhaseFinishedChannel = default;
 
-        [BoxGroup(AttributeConstants.LISTENING_TO)]
-        [SerializeField] private SlotEventChannelSO _onDeselectCharacterChannel = default;
+        [BoxGroup(AttributeConstants.BROADCASTING_ON)]
+        [SerializeField] private VoidEventChannelSO _onCancelSelectionChannel = default;
 
         [Space(5)]
-        [SerializeField] private Slot[] _slots = default;
+        [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
 
-        private IList<Character> _characters = new List<Character>();
-
-        #endregion
-
-        #region Engine Methods
-
-        private void Awake()
-        {
-            foreach (var slot in _slots)
-            {
-                slot.SlotController = this;
-            }
-
-            RegisterListeners();
-        }
-
-        private void OnDestroy()
-        {
-            UnregisterListeners();
-        }
+        private bool _isPreparationPhase;
+        private Character _characterSelected;
 
         #endregion
 
         #region Methods
 
-        public bool CanReceiveACharacter(Character character)
+        public override bool CanReceiveACharacter(Character character)
         {
-           return Contains(character) || _characters.Count < _levelEconomyManager.PlayerLevel;
+            return Contains(character) || _characters.Count < _levelEconomyManager.PlayerLevel;
         }
 
-        public void OnCharacterAddedToSlot(Character character)
+        protected override void RegisterListeners()
         {
-            if (!Contains(character))
+            base.RegisterListeners();
+            _onPreparationPhaseStartedChannel.OnEventRaised += OnPreparationPhaseStarted;
+            _onPreparationPhaseFinishedChannel.OnEventRaised += OnPreparationPhaseFinished;
+        }
+
+        protected override void UnregisterListeners()
+        {
+            base.UnregisterListeners();
+            _onPreparationPhaseStartedChannel.OnEventRaised -= OnPreparationPhaseStarted;
+            _onPreparationPhaseFinishedChannel.OnEventRaised -= OnPreparationPhaseFinished;
+        }
+
+        protected override void OnSelectCharacter(object sender, Slot slot)
+        {
+            _characterSelected = slot.Character;
+
+            if (_isPreparationPhase)
             {
-                _characters.Add(character);
+                ActivateSlots(true);
+                AllowCharacterSelection(false);
             }
         }
 
-        public void OnCharacterRemovedFromSlot(Character character)
+        protected override void OnDeselectCharacter(object sender, Slot slot)
         {
-            _characters.Remove(character);
-        }
+            _characterSelected = null;
 
-        private void RegisterListeners()
-        {
-            _onSelectCharacterChannel.OnEventRaised += OnSelectCharacter;
-            _onDeselectCharacterChannel.OnEventRaised += OnDeselectCharacter;
-        }
-
-        private void UnregisterListeners()
-        {
-            _onSelectCharacterChannel.OnEventRaised -= OnSelectCharacter;
-            _onDeselectCharacterChannel.OnEventRaised -= OnDeselectCharacter;
-        }
-
-        private void OnSelectCharacter(object sender, Slot slot)
-        {
-            ActivateSlots(true);
-        }
-
-        private void OnDeselectCharacter(object sender, Slot slot)
-        {
-            ActivateSlots(false);
-        }
-
-        private void ActivateSlots(bool value)
-        {
-            foreach (var slot in _slots)
+            if (_isPreparationPhase)
             {
-                slot.ActivateBase(value);
+                ActivateSlots(false);
+                AllowCharacterSelection(true);
+            }
+        }
+
+        private void OnPreparationPhaseStarted()
+        {
+            _isPreparationPhase = true;
+            AllowCharacterSelection(true);
+
+            if (_characterSelected)
+            {
+                ActivateSlots(true);
+            }
+            else
+            {
+                AllowCharacterSelection(true);
+            }
+        }
+
+        private void OnPreparationPhaseFinished()
+        {
+            _isPreparationPhase = false;
+            ActivateSlots(false);
+            AllowCharacterSelection(false);
+
+            if (_characterSelected && _characters.Contains(_characterSelected))
+            {
+                // If the preparation has finished and a character is being selected from the battlefield,
+                // it is necessary to deselect it to return it to its slot.
+                _onCancelSelectionChannel?.RaiseEvent();
             }
         }
 

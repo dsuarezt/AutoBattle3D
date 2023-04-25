@@ -8851,6 +8851,9 @@ MonoBehaviour:
   _levelEconomyInitialSettings: {fileID: 11400000, guid: 5548dcd99b3942a47b1fd75fcbcb4733, type: 2}
   _levelEconomyManager: {fileID: 11400000, guid: 5e4d2adc90da8ce428f1d8541ef178e0, type: 2}
   _selectionController: {fileID: 11400000, guid: b5450458d9236614d87615a0e53fa58d, type: 2}
+  _roundManagerSO: {fileID: 11400000, guid: ecdc3e3ee6a851a4985b1110c192e4b3, type: 2}
+  _onPreparationPhaseStartedChannel: {fileID: 11400000, guid: 1aaf3eaa0290b2b418c9c2202885a94f, type: 2}
+  _onPreparationPhaseFinishedChannel: {fileID: 11400000, guid: 89b850af02bd7784bae4860d0f963e27, type: 2}
 --- !u!1 &1027470469
 GameObject:
   m_ObjectHideFlags: 0
@@ -10123,9 +10126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1afe0d5dcff243e4ea06bb7170927d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelEconomyManager: {fileID: 11400000, guid: 5e4d2adc90da8ce428f1d8541ef178e0, type: 2}
-  _onSelectCharacterChannel: {fileID: 11400000, guid: 878a3680e06636a41bfc444bddd63296, type: 2}
-  _onDeselectCharacterChannel: {fileID: 11400000, guid: bf78ad5e971f809499cbf8a2ad18d4e1, type: 2}
   _slots:
   - {fileID: 2122424642}
   - {fileID: 1522167581}
@@ -10159,6 +10159,12 @@ MonoBehaviour:
   - {fileID: 532109665}
   - {fileID: 491935631}
   - {fileID: 531393665}
+  _onSelectCharacterChannel: {fileID: 11400000, guid: 878a3680e06636a41bfc444bddd63296, type: 2}
+  _onDeselectCharacterChannel: {fileID: 11400000, guid: bf78ad5e971f809499cbf8a2ad18d4e1, type: 2}
+  _onPreparationPhaseStartedChannel: {fileID: 11400000, guid: 1aaf3eaa0290b2b418c9c2202885a94f, type: 2}
+  _onPreparationPhaseFinishedChannel: {fileID: 11400000, guid: 89b850af02bd7784bae4860d0f963e27, type: 2}
+  _onCancelSelectionChannel: {fileID: 11400000, guid: 4395510e25d152341ba94883b5aae2ce, type: 2}
+  _levelEconomyManager: {fileID: 11400000, guid: 5e4d2adc90da8ce428f1d8541ef178e0, type: 2}
 --- !u!1 &1159345027
 GameObject:
   m_ObjectHideFlags: 0
@@ -16203,9 +16209,10 @@ MonoBehaviour:
   - {fileID: 1648582360}
   - {fileID: 2082065805}
   - {fileID: 1374297038}
-  _characterSpawner: {fileID: 11400000, guid: 5611a130d99f36d478e7a994f6982995, type: 2}
   _onSelectCharacterChannel: {fileID: 11400000, guid: 878a3680e06636a41bfc444bddd63296, type: 2}
   _onDeselectCharacterChannel: {fileID: 11400000, guid: bf78ad5e971f809499cbf8a2ad18d4e1, type: 2}
+  _onCancelSelectionChannel: {fileID: 11400000, guid: 4395510e25d152341ba94883b5aae2ce, type: 2}
+  _characterSpawner: {fileID: 11400000, guid: 5611a130d99f36d478e7a994f6982995, type: 2}
 --- !u!1001 &1853632293
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@
 //-----------------------------------------------------------------------
 
 using System.Threading;
+using Cysharp.Threading.Tasks;
 using LitLab.CyberTitans.Rounds;
 using LitLab.CyberTitans.Shared;
 using NaughtyAttributes;
@@ -27,7 +28,7 @@ namespace LitLab.CyberTitans.Level
         [SerializeField] private VoidEventChannelSO _onPreparationPhaseStartedChannel = default;
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
-        [SerializeField] private VoidEventChannelSO _onBattlePhaseStartedChannel = default;
+        [SerializeField] private VoidEventChannelSO _onPreparationPhaseFinishedChannel = default;
 
         private ILevelState _currentState;
         private ILevelStateConfiguration _stateConfiguration;
@@ -38,7 +39,7 @@ namespace LitLab.CyberTitans.Level
 
         public RoundManagerSO RoundManager => _roundManagerSO;
         public VoidEventChannelSO OnPreparationPhaseStartedChannel => _onPreparationPhaseStartedChannel;
-        public VoidEventChannelSO OnBattlePhaseStartedChannel => _onBattlePhaseStartedChannel;
+        public VoidEventChannelSO OnPreparationPhaseFinishedChannel => _onPreparationPhaseFinishedChannel;
 
         #endregion
 
@@ -47,6 +48,10 @@ namespace LitLab.CyberTitans.Level
         private void Awake()
         {
             ConfigureStates();
+        }
+
+        private void Start()
+        {
             ChangeState(nameof(LevelInitialState));
         }
 
@@ -72,17 +77,17 @@ namespace LitLab.CyberTitans.Level
             _roundManagerSO?.Initialize();
         }
 
-        public CancellationToken GetCancellationTokenOnDestroy()
+        public CancellationToken GetCancellationToken()
         {
-            return GetCancellationTokenOnDestroy();
+           return this.GetCancellationTokenOnDestroy();
         }
 
         private void ConfigureStates()
         {
             _stateConfiguration = new LevelStateConfiguration();
             _stateConfiguration.AddState(nameof(LevelInitialState), new LevelInitialState(this));
-            _stateConfiguration.AddState(nameof(LevelPreparationState), new LevelPreparationState(this));
-            _stateConfiguration.AddState(nameof(LevelBattleState), new LevelBattleState(this));
+            _stateConfiguration.AddState(nameof(LevelPreparationStartedState), new LevelPreparationStartedState(this));
+            _stateConfiguration.AddState(nameof(LevelPreparationFinishedState), new LevelPreparationFinishedState(this));
         }
 
         private void Reset()

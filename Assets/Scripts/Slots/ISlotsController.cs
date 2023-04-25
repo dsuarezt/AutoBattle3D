@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: ISlotController.cs
+// File name: ISlotsController.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 23, 2023
@@ -9,7 +9,7 @@ using LitLab.CyberTitans.Characters;
 
 namespace LitLab.CyberTitans.Slots
 {
-    public interface ISlotController
+    public interface ISlotsController
     {
         #region Methods
 

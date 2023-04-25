@@ -5,7 +5,7 @@
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Shared;
@@ -15,48 +15,21 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Inventory
 {
-    public class InventoryController : MonoBehaviour, ISlotController
+    public class InventoryController : SlotsControllerBase
     {
         #region Fields
 
-        [SerializeField] private Slot[] _slots = default;
+        [BoxGroup(AttributeConstants.LISTENING_TO)]
+        [SerializeField] private VoidEventChannelSO _onCancelSelectionChannel = default;
 
         [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
         [SerializeField] private CharacterSpawnerSO _characterSpawner = default;
-
-        [BoxGroup(AttributeConstants.LISTENING_TO)]
-        [SerializeField] private SlotEventChannelSO _onSelectCharacterChannel = default;
-
-        [BoxGroup(AttributeConstants.LISTENING_TO)]
-        [SerializeField] private SlotEventChannelSO _onDeselectCharacterChannel = default;
-
-
-        private IList<Character> _characters = new List<Character>();
 
         #endregion
 
         #region Properties
 
         public bool AnyEmptySlot => _slots.Length > _characters.Count;
-
-        #endregion
-
-        #region Engine Methods
-
-        private void Awake()
-        {
-            foreach (var slot in _slots)
-            {
-                slot.SlotController = this;
-            }
-
-            RegisterListeners();
-        }
-
-        private void OnDestroy()
-        {
-            UnregisterListeners();
-        }
 
         #endregion
 
@@ -71,61 +44,34 @@ namespace LitLab.CyberTitans.Inventory
                 if (slot)
                 {
                     Character character = _characterSpawner.SpawnCharacter(characterData);
-                    var characterSelector = character?.gameObject.AddComponent<CharacterSelector>();
-                    characterSelector?.Initialize(_onSelectCharacterChannel, _onDeselectCharacterChannel);
+                    character?.gameObject.AddComponent<CharacterSelector>();
                     slot.AddNewCharacter(character);
                 }
             }
         }
 
-        public bool CanReceiveACharacter(Character character) => true;
+        public override bool CanReceiveACharacter(Character character) => true;
 
-        public void OnCharacterAddedToSlot(Character character)
+        protected override void RegisterListeners()
         {
-            if (!_characters.Contains(character))
-            {
-                _characters.Add(character);
-            }
+            base.RegisterListeners();
+            _onCancelSelectionChannel.OnEventRaised += OnCancelSelection;
         }
 
-        public void OnCharacterRemovedFromSlot(Character character)
+        protected override void UnregisterListeners()
         {
-            _characters.Remove(character);
+            base.UnregisterListeners();
+            _onCancelSelectionChannel.OnEventRaised -= OnCancelSelection;
+        }
+
+        private void OnCancelSelection()
+        {
+            ActivateSlots(false);
         }
 
         private Slot GetFirstEmptySlot()
         {
             return _slots.FirstOrDefault(s => s.IsEmpty);
-        }
-
-        private void RegisterListeners()
-        {
-            _onSelectCharacterChannel.OnEventRaised += OnSelectCharacter;
-            _onDeselectCharacterChannel.OnEventRaised += OnDeselectCharacter;
-        }
-
-        private void UnregisterListeners()
-        {
-            _onSelectCharacterChannel.OnEventRaised -= OnSelectCharacter;
-            _onDeselectCharacterChannel.OnEventRaised -= OnDeselectCharacter;
-        }
-
-        private void ActivateSlots(bool value)
-        {
-            foreach (var slot in _slots)
-            {
-                slot.ActivateBase(value);
-            }
-        }
-
-        private void OnSelectCharacter(object sender, Slot slot)
-        {
-            ActivateSlots(true);
-        }
-
-        private void OnDeselectCharacter(object sender, Slot slot)
-        {
-            ActivateSlots(false);
         }
 
         #endregion

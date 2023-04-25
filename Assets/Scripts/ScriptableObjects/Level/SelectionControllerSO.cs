@@ -32,6 +32,9 @@ namespace LitLab.CyberTitans.Level
         [BoxGroup(AttributeConstants.LISTENING_TO)]
         [SerializeField] private SlotEventChannelSO _onSlotMouseExitChannel = default;
 
+        [BoxGroup(AttributeConstants.LISTENING_TO)]
+        [SerializeField] private VoidEventChannelSO _onCancelSelectionChannel = default;
+
         private Slot _currentSlot;
         private Slot _targetSlot;
         private ObjectToMousePosition _objectToMousePosition;
@@ -42,9 +45,9 @@ namespace LitLab.CyberTitans.Level
 
         public void Initialize()
         {
-            GLDebug.Log($"Initializing {nameof(SelectionControllerSO)}.", Color.cyan);
             RegisterListeners();
             _objectToMousePosition = new ObjectToMousePosition(_interceptorLayerMask);
+            GLDebug.Log($"Initializing {nameof(SelectionControllerSO)}.", Color.cyan);
         }
 
         public void ResetOnExitPlayMode()
@@ -65,6 +68,7 @@ namespace LitLab.CyberTitans.Level
             _onDeselectCharacterChannel.OnEventRaised += OnDeselectCharacter;
             _onSlotMouseEnterChannel.OnEventRaised += OnSlotMouseEnter;
             _onSlotMouseExitChannel.OnEventRaised += OnSlotMouseExit;
+            _onCancelSelectionChannel.OnEventRaised += OnCancelSelection;
         }
 
         private void UnregisterListeners()
@@ -73,6 +77,7 @@ namespace LitLab.CyberTitans.Level
             _onDeselectCharacterChannel.OnEventRaised -= OnDeselectCharacter;
             _onSlotMouseEnterChannel.OnEventRaised -= OnSlotMouseEnter;
             _onSlotMouseExitChannel.OnEventRaised -= OnSlotMouseExit;
+            _onCancelSelectionChannel.OnEventRaised -= OnCancelSelection;
         }
 
         private void OnSelectCharacter(object sender, Slot slot)
@@ -83,10 +88,10 @@ namespace LitLab.CyberTitans.Level
 
         private void OnDeselectCharacter(object sender, Slot slot)
         {
-            _objectToMousePosition.Cancel();
-
             if (_currentSlot)
             {
+                _objectToMousePosition.Cancel();
+
                 if (!_targetSlot)
                 {
                     ReturnCharacterToItsSlot();
@@ -135,6 +140,14 @@ namespace LitLab.CyberTitans.Level
 
         private void OnSlotMouseExit(object sender, Slot slot)
         {
+            _targetSlot = null;
+        }
+
+        private void OnCancelSelection()
+        {
+            _objectToMousePosition.Cancel();
+            ReturnCharacterToItsSlot();
+            _currentSlot = null;
             _targetSlot = null;
         }
 

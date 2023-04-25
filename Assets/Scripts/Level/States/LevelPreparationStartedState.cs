@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: LevelPreparationState.cs
+// File name: LevelPreparationStartedState.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 24, 2023
@@ -7,15 +7,14 @@
 
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using LitLab.CyberTitans.Rounds;
 
 namespace LitLab.CyberTitans.Level
 {
-    public class LevelPreparationState : LevelStateBase
+    public class LevelPreparationStartedState : LevelStateBase
     {
         #region Constructors
 
-        public LevelPreparationState(LevelController levelController) : base(levelController)
+        public LevelPreparationStartedState(LevelController levelController) : base(levelController)
         {
         }
 
@@ -32,12 +31,12 @@ namespace LitLab.CyberTitans.Level
         {
             _levelController.OnPreparationPhaseStartedChannel?.RaiseEvent();
 
-            CancellationToken cancellationToken = _levelController.GetCancellationTokenOnDestroy();
+            CancellationToken cancellationToken = _levelController.GetCancellationToken();
             await _levelController.RoundManager.StartPreparationPhaseAsync(cancellationToken);
 
             if (!cancellationToken.IsCancellationRequested)
             {
-                _levelController.ChangeState(nameof(LevelBattleState));
+                _levelController.ChangeState(nameof(LevelPreparationFinishedState));
             }
         }
 

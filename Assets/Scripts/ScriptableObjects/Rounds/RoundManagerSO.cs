@@ -5,6 +5,7 @@
 // Created on: April 25, 2023
 //-----------------------------------------------------------------------
 
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using LitLab.CyberTitans.Shared;
@@ -18,8 +19,7 @@ namespace LitLab.CyberTitans.Rounds
     {
         #region Fields
 
-        [SerializeField] private int _roundAmount = default;
-        [SerializeField] private int _preparationTime = default;
+        [SerializeField] private RoundInitialSettingsSO _initialSettings = default;
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
         [SerializeField] private IntEventChannelSO _onPreparationTimeChangedChannel = default;
@@ -31,19 +31,7 @@ namespace LitLab.CyberTitans.Rounds
         #region Properties
 
         // TODO:
-        public bool IsTheLastRound => true;
-
-        #endregion
-
-        #region Constructors
-
-
-
-        #endregion
-
-        #region Engine Methods
-
-
+        public bool IsTheLastRound => false;
 
         #endregion
 
@@ -57,12 +45,13 @@ namespace LitLab.CyberTitans.Rounds
 
         public async UniTask StartPreparationPhaseAsync(CancellationToken cancellationToken)
         {
-            await _countdownTimer.StartAsync(_preparationTime, cancellationToken);
+            await _countdownTimer.StartAsync(_initialSettings.PreparationTime, cancellationToken);
         }
 
-        public async UniTask StartBattlePhaseAsync(CancellationToken cancellationToken)
+        public async UniTask FinishPreparationPhaseAsync(CancellationToken cancellationToken)
         {
             // TODO:
+            await UniTask.Delay(TimeSpan.FromSeconds(5));
         }
 
         public void ResetOnExitPlayMode()
@@ -72,7 +61,10 @@ namespace LitLab.CyberTitans.Rounds
 
         public void Reset()
         {
-            _countdownTimer.OnValueChangedEvent -= OnTimerValueChanged;
+            if (_countdownTimer != null)
+            {
+                _countdownTimer.OnValueChangedEvent -= OnTimerValueChanged;
+            }
         }
 
         private void OnTimerValueChanged(int value)

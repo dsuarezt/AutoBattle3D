@@ -24,7 +24,7 @@ namespace LitLab.CyberTitans
         public override void Enter()
         {
             _levelController.Initialize();
-            _levelController.ChangeState(nameof(LevelPreparationState));
+            _levelController.ChangeState(nameof(LevelPreparationStartedState));
         }
 
         #endregion

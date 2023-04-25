@@ -21,3 +21,4 @@ MonoBehaviour:
   _onDeselectCharacterChannel: {fileID: 11400000, guid: bf78ad5e971f809499cbf8a2ad18d4e1, type: 2}
   _onSlotMouseEnterChannel: {fileID: 11400000, guid: 4fabaf49c75e7f74292b158b47a40046, type: 2}
   _onSlotMouseExitChannel: {fileID: 11400000, guid: 1358eeb0c178c414a9ebab282db5c832, type: 2}
+  _onCancelSelectionChannel: {fileID: 11400000, guid: 4395510e25d152341ba94883b5aae2ce, type: 2}
