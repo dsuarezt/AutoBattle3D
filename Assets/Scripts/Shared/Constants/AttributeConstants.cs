@@ -14,12 +14,10 @@ namespace LitLab.CyberTitans.Shared
         public const string BROADCASTING_ON = "Broadcasting on";
         public const string LISTENING_TO = "Listening to";
         public const string EVENT_PARAMETERS = "Event parameters";
-
         public const string SCRIPTABLE_OBJECTS = "Scriptable Objects";
-
         public const string UI_ELEMENTS = "UI Elements";
-
         public const string INVENTORY_SYSTEM = "Inventory System";
+        public const string ENEMY_GENERATION = "Enemy Generation";
 
         #endregion
     }

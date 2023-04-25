@@ -31,12 +31,6 @@ namespace #NAMESPACE#
 
         #endregion
 
-        #region Constructors
-		
-
-
-        #endregion
-
         #region Engine Methods
 		
 

@@ -7,6 +7,7 @@
 
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using LitLab.CyberTitans.Battlefield;
 using LitLab.CyberTitans.Rounds;
 using LitLab.CyberTitans.Shared;
 using NaughtyAttributes;
@@ -17,6 +18,8 @@ namespace LitLab.CyberTitans.Level
     public class LevelController : MonoBehaviour
     {
         #region Fields
+
+        [SerializeField] private EnemyBattlefieldController _enemyBattlefieldController;
 
         [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
@@ -36,6 +39,7 @@ namespace LitLab.CyberTitans.Level
 
         #region Properties
 
+        public EnemyBattlefieldController EnemyBattlefieldController => _enemyBattlefieldController;
         public RoundManagerSO RoundManager => _roundManagerSO;
         public VoidEventChannelSO OnPreparationPhaseStartedChannel => _onPreparationPhaseStartedChannel;
         public VoidEventChannelSO OnPreparationPhaseFinishedChannel => _onPreparationPhaseFinishedChannel;
