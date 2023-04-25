@@ -15,4 +15,6 @@ MonoBehaviour:
   _description: It manages the rounds and allows to start the preparation and battle
     phase.
   _initialSettings: {fileID: 11400000, guid: 389bf046419ec1c41b7d16c029e66590, type: 2}
+  _battleDirector: {fileID: 11400000, guid: 15816e5a5d6a6d442ab774af8daa81ec, type: 2}
+  _levelEconomyManager: {fileID: 11400000, guid: 5e4d2adc90da8ce428f1d8541ef178e0, type: 2}
   _onPreparationTimeChangedChannel: {fileID: 11400000, guid: f607a5cab81d4d744bb4cca98ec3833a, type: 2}

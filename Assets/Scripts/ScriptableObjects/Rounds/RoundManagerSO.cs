@@ -6,8 +6,11 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using LitLab.CyberTitans.Level;
 using LitLab.CyberTitans.Shared;
 using NaughtyAttributes;
 using UnityEngine;
@@ -19,19 +22,23 @@ namespace LitLab.CyberTitans.Rounds
     {
         #region Fields
 
+        [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
         [SerializeField] private RoundSettingsSO _initialSettings = default;
+        [SerializeField] private BattleDirectorSO _battleDirector = default;
+        [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
         [SerializeField] private IntEventChannelSO _onPreparationTimeChangedChannel = default;
 
         private CountdownTimer _countdownTimer;
+        private IList<BattleResult> _battleResults;
 
         #endregion
 
         #region Properties
 
-        // TODO:
-        public bool IsTheLastRound => false;
+        public bool IsTheLastRound => _battleResults.Count == _initialSettings.RoundAmount;
+        public BattleResult? LastBattleResult => _battleResults?.LastOrDefault();
 
         #endregion
 
@@ -41,6 +48,7 @@ namespace LitLab.CyberTitans.Rounds
         {
             _countdownTimer = new CountdownTimer();
             _countdownTimer.OnValueChangedEvent += OnTimerValueChanged;
+            _battleResults = new List<BattleResult>();
         }
 
         public async UniTask StartPreparationPhaseAsync(CancellationToken cancellationToken)
@@ -48,10 +56,28 @@ namespace LitLab.CyberTitans.Rounds
             await _countdownTimer.StartAsync(_initialSettings.PreparationTime, cancellationToken);
         }
 
-        public async UniTask FinishPreparationPhaseAsync(CancellationToken cancellationToken)
+        public async UniTask StartBattlePhaseAsync(CancellationToken cancellationToken)
         {
-            // TODO:
-            await UniTask.Delay(TimeSpan.FromSeconds(5));
+            BattleResult battleResult = await _battleDirector.StartNewBattle(cancellationToken);
+            _battleResults.Add(battleResult);
+        }
+
+        public void Reward()
+        {
+            BattleResult? lastBattleResult = LastBattleResult;
+
+            if (lastBattleResult.HasValue)
+            {
+                if (lastBattleResult.Value == BattleResult.Won)
+                {
+                    int amount = _initialSettings.GoldAmountPerBattleWon + GetGoldAmountPerWinStreak();
+                    _levelEconomyManager.Deposit(amount);
+                }
+                else
+                {
+                    _levelEconomyManager.ConsumeLife();
+                }
+            }
         }
 
         public void ResetOnExitPlayMode()
@@ -65,11 +91,30 @@ namespace LitLab.CyberTitans.Rounds
             {
                 _countdownTimer.OnValueChangedEvent -= OnTimerValueChanged;
             }
+
+            _battleResults = null;
         }
 
         private void OnTimerValueChanged(int value)
         {
             _onPreparationTimeChangedChannel?.RaiseEvent(this, value);
+        }
+
+        private int GetGoldAmountPerWinStreak()
+        {
+            if (LastBattleResult.HasValue && LastBattleResult.Value == BattleResult.Lost) return 0;
+
+            int winStreak = 0;
+            int length = _battleResults.Count - 1;
+
+            for (int i = 0; i < length; i++)
+            {
+                if (_battleResults[i] == BattleResult.Lost && winStreak > 0) return 0;
+
+                if (_battleResults[i] == BattleResult.Won) winStreak++;
+            }
+
+            return winStreak * _initialSettings.GoldAmountPerWinStreak;
         }
 
         #endregion

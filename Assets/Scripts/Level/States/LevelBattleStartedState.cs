@@ -1,8 +1,8 @@
 //-----------------------------------------------------------------------
-// File name: LevelPreparationFinishedState.cs
+// File name: LevelBattleStartedState.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
-// Created on: April 25, 2023
+// Created on: April 26, 2023
 //-----------------------------------------------------------------------
 
 using Cysharp.Threading.Tasks;
@@ -10,11 +10,11 @@ using System.Threading;
 
 namespace LitLab.CyberTitans.Level
 {
-    public class LevelPreparationFinishedState : LevelStateBase
-    {
+    public class LevelBattleStartedState : LevelStateBase 
+	{
         #region Constructors
 
-        public LevelPreparationFinishedState(LevelController levelController) : base(levelController)
+        public LevelBattleStartedState(LevelController levelController) : base(levelController)
         {
         }
 
@@ -24,19 +24,19 @@ namespace LitLab.CyberTitans.Level
 
         public override void Enter()
         {
-            FinishPreparationPhaseAsync().Forget();
+            StartBattlePhaseAsync().Forget();
         }
 
-        private async UniTask FinishPreparationPhaseAsync()
+        private async UniTask StartBattlePhaseAsync()
         {
-            _levelController.OnPreparationPhaseFinishedChannel?.RaiseEvent();
+            _levelController.OnBattlePhaseStartedChannel?.RaiseEvent();
 
             CancellationToken cancellationToken = _levelController.GetCancellationToken();
-            await _levelController.EnemyBattlefieldController.GenerateEnemiesAsync(cancellationToken);
+            await _levelController.RoundManager.StartBattlePhaseAsync(cancellationToken);
 
             if (!cancellationToken.IsCancellationRequested)
             {
-                _levelController.ChangeState(nameof(LevelBattleStartedState));
+                _levelController.ChangeState(nameof(LevelBattleFinishedState));
             }
         }
 

@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f8181bb8de3cc48936cc7618f8ecae, type: 3}
-  m_Name: RoundSettings
+  m_Script: {fileID: 11500000, guid: a5d9e90f8e2c77649ad337aaeff13170, type: 3}
+  m_Name: BattleDirector
   m_EditorClassIdentifier: 
-  _description: Provides initial values to configure RoundManager.
-  _roundAmount: 4
-  _preparationTime: 10
-  _goldAmountPerWinStreak: 1
-  _goldAmountPerBattleWon: 5
-  _battleDuration: 5
+  _description: 
+  _roundSettings: {fileID: 11400000, guid: 389bf046419ec1c41b7d16c029e66590, type: 2}

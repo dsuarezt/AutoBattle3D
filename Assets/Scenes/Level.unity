@@ -9437,6 +9437,8 @@ MonoBehaviour:
   _roundManagerSO: {fileID: 11400000, guid: ecdc3e3ee6a851a4985b1110c192e4b3, type: 2}
   _onPreparationPhaseStartedChannel: {fileID: 11400000, guid: 1aaf3eaa0290b2b418c9c2202885a94f, type: 2}
   _onPreparationPhaseFinishedChannel: {fileID: 11400000, guid: 89b850af02bd7784bae4860d0f963e27, type: 2}
+  _onBattlePhaseStartedChannel: {fileID: 11400000, guid: 809bf41f5dbdb024bb6c01011c3ebe35, type: 2}
+  _onBattlePhaseFinishedChannel: {fileID: 11400000, guid: c564744d3677bc340bb0cc191966a520, type: 2}
 --- !u!1 &1027470469
 GameObject:
   m_ObjectHideFlags: 0

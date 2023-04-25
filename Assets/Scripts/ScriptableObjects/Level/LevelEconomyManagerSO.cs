@@ -102,7 +102,7 @@ namespace LitLab.CyberTitans.Level
 
         public void Deposit(int amount)
         {
-            if (amount > 0) _goldAmount += amount;
+            if (amount > 0) GoldAmount += amount;
         }
 
         public void ConsumeLife()

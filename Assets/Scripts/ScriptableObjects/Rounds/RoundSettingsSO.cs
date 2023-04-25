@@ -17,8 +17,9 @@ namespace LitLab.CyberTitans.Rounds
 
         [SerializeField] private int _roundAmount = default;
         [SerializeField] private int _preparationTime = default;
-        [SerializeField] private int _goldAmountPerWin = default;
-        [SerializeField] private int _livesAmountPerBattleLost = default;
+        [SerializeField] private int _goldAmountPerWinStreak = default;
+        [SerializeField] private int _goldAmountPerBattleWon = default;
+        [SerializeField] private int _battleDuration = default;
 
         #endregion
 
@@ -26,8 +27,9 @@ namespace LitLab.CyberTitans.Rounds
 
         public int RoundAmount => _roundAmount;
         public int PreparationTime => _preparationTime;
-        public int GoldAmountPerWin => _goldAmountPerWin;
-        public int LivesAmountPerBattleLost => _livesAmountPerBattleLost;
+        public int GoldAmountPerWinStreak => _goldAmountPerWinStreak;
+        public int GoldAmountPerBattleWon => _goldAmountPerBattleWon;
+        public int BattleDuration => _battleDuration;
 
         #endregion
     }
