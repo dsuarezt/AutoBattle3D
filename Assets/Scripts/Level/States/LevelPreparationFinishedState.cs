@@ -36,7 +36,7 @@ namespace LitLab.CyberTitans.Level
 
             if (!cancellationToken.IsCancellationRequested)
             {
-                _levelController.ChangeState(nameof(LevelBattleStartedState));
+                _levelController.ChangeState(nameof(LevelCombatStartedState));
             }
         }
 

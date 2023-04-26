@@ -33,10 +33,10 @@ namespace LitLab.CyberTitans.Level
         [SerializeField] private VoidEventChannelSO _onPreparationPhaseFinishedChannel = default;
         
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
-        [SerializeField] private VoidEventChannelSO _onBattlePhaseStartedChannel = default;
+        [SerializeField] private VoidEventChannelSO _onCombatPhaseStartedChannel = default;
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
-        [SerializeField] private VoidEventChannelSO _onBattlePhaseFinishedChannel = default;
+        [SerializeField] private VoidEventChannelSO _onCombatPhaseFinishedChannel = default;
 
         private ILevelState _currentState;
         private ILevelStateConfiguration _stateConfiguration;
@@ -45,12 +45,13 @@ namespace LitLab.CyberTitans.Level
 
         #region Properties
 
+        public LevelEconomyManagerSO LevelEconomyManager => _levelEconomyManager;
         public EnemyBattlefieldController EnemyBattlefieldController => _enemyBattlefieldController;
         public RoundManagerSO RoundManager => _roundManagerSO;
         public VoidEventChannelSO OnPreparationPhaseStartedChannel => _onPreparationPhaseStartedChannel;
         public VoidEventChannelSO OnPreparationPhaseFinishedChannel => _onPreparationPhaseFinishedChannel;
-        public VoidEventChannelSO OnBattlePhaseStartedChannel => _onBattlePhaseStartedChannel;
-        public VoidEventChannelSO OnBattlePhaseFinishedChannel => _onBattlePhaseFinishedChannel;
+        public VoidEventChannelSO OnCombatPhaseStartedChannel => _onCombatPhaseStartedChannel;
+        public VoidEventChannelSO OnCombatPhaseFinishedChannel => _onCombatPhaseFinishedChannel;
 
         #endregion
 
@@ -99,8 +100,8 @@ namespace LitLab.CyberTitans.Level
             _stateConfiguration.AddState(nameof(LevelInitialState), new LevelInitialState(this));
             _stateConfiguration.AddState(nameof(LevelPreparationStartedState), new LevelPreparationStartedState(this));
             _stateConfiguration.AddState(nameof(LevelPreparationFinishedState), new LevelPreparationFinishedState(this));
-            _stateConfiguration.AddState(nameof(LevelBattleStartedState), new LevelBattleStartedState(this));
-            _stateConfiguration.AddState(nameof(LevelBattleFinishedState), new LevelBattleFinishedState(this));
+            _stateConfiguration.AddState(nameof(LevelCombatStartedState), new LevelCombatStartedState(this));
+            _stateConfiguration.AddState(nameof(LevelCombatFinishedState), new LevelCombatFinishedState(this));
             _stateConfiguration.AddState(nameof(LevelFinishedState), new LevelFinishedState(this));
         }
 

@@ -5,7 +5,6 @@
 // Created on: April 25, 2023
 //-----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -24,21 +23,22 @@ namespace LitLab.CyberTitans.Rounds
 
         [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
         [SerializeField] private RoundSettingsSO _initialSettings = default;
-        [SerializeField] private BattleDirectorSO _battleDirector = default;
+        [SerializeField] private CombatDirectorSO _combatDirector = default;
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
         [SerializeField] private IntEventChannelSO _onPreparationTimeChangedChannel = default;
 
         private CountdownTimer _countdownTimer;
-        private IList<BattleResult> _battleResults;
+        private IList<CombatResult> _combatResults;
+        private bool _isWinStreakLost;
 
         #endregion
 
         #region Properties
 
-        public bool IsTheLastRound => _battleResults.Count == _initialSettings.RoundAmount;
-        public BattleResult? LastBattleResult => _battleResults?.LastOrDefault();
+        public bool IsTheLastRound => _combatResults.Count == _initialSettings.RoundAmount;
+        public CombatResult? LastCombatResult => _combatResults?.LastOrDefault();
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace LitLab.CyberTitans.Rounds
         {
             _countdownTimer = new CountdownTimer();
             _countdownTimer.OnValueChangedEvent += OnTimerValueChanged;
-            _battleResults = new List<BattleResult>();
+            _combatResults = new List<CombatResult>();
         }
 
         public async UniTask StartPreparationPhaseAsync(CancellationToken cancellationToken)
@@ -56,21 +56,22 @@ namespace LitLab.CyberTitans.Rounds
             await _countdownTimer.StartAsync(_initialSettings.PreparationTime, cancellationToken);
         }
 
-        public async UniTask StartBattlePhaseAsync(CancellationToken cancellationToken)
+        public async UniTask StartCombatPhaseAsync(CancellationToken cancellationToken)
         {
-            BattleResult battleResult = await _battleDirector.StartNewBattle(cancellationToken);
-            _battleResults.Add(battleResult);
+            CombatResult combatResult = await _combatDirector.StartNewCombat(cancellationToken);
+            _combatResults.Add(combatResult);
         }
 
         public void Reward()
         {
-            BattleResult? lastBattleResult = LastBattleResult;
+            CombatResult? lastCombatResult = LastCombatResult;
 
-            if (lastBattleResult.HasValue)
+            if (lastCombatResult.HasValue)
             {
-                if (lastBattleResult.Value == BattleResult.Won)
+                if (lastCombatResult.Value == CombatResult.Won)
                 {
-                    int amount = _initialSettings.GoldAmountPerBattleWon + GetGoldAmountPerWinStreak();
+                    int goldAmountPerWinStreak = !_isWinStreakLost ? GetGoldAmountPerWinStreak() : 0;
+                    int amount = _initialSettings.GoldAmountPerCombatWon + goldAmountPerWinStreak;
                     _levelEconomyManager.Deposit(amount);
                 }
                 else
@@ -92,7 +93,8 @@ namespace LitLab.CyberTitans.Rounds
                 _countdownTimer.OnValueChangedEvent -= OnTimerValueChanged;
             }
 
-            _battleResults = null;
+            _combatResults = null;
+            _isWinStreakLost = false;
         }
 
         private void OnTimerValueChanged(int value)
@@ -102,16 +104,24 @@ namespace LitLab.CyberTitans.Rounds
 
         private int GetGoldAmountPerWinStreak()
         {
-            if (LastBattleResult.HasValue && LastBattleResult.Value == BattleResult.Lost) return 0;
-
             int winStreak = 0;
-            int length = _battleResults.Count - 1;
+            int length = _combatResults.Count - 1;
 
             for (int i = 0; i < length; i++)
             {
-                if (_battleResults[i] == BattleResult.Lost && winStreak > 0) return 0;
+                if (_combatResults[i] == CombatResult.Lost)
+                {
+                    if (winStreak > 0)
+                    {
+                        _isWinStreakLost = true;
 
-                if (_battleResults[i] == BattleResult.Won) winStreak++;
+                        return 0;
+                    }
+                }
+                else
+                {
+                    winStreak++;
+                }
             }
 
             return winStreak * _initialSettings.GoldAmountPerWinStreak;

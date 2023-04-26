@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b275b761cead96c4ea66436c77687d58, type: 3}
-  m_Name: OnBattlePhaseFinishedChannel
+  m_Script: {fileID: 11500000, guid: a5d9e90f8e2c77649ad337aaeff13170, type: 3}
+  m_Name: CombatDirector
   m_EditorClassIdentifier: 
   _description: 
+  _roundSettings: {fileID: 11400000, guid: 389bf046419ec1c41b7d16c029e66590, type: 2}

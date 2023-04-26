@@ -11,8 +11,9 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Shared;
+using LitLab.CyberTitans.Slots;
+using NaughtyAttributes;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace LitLab.CyberTitans.Battlefield
 {
@@ -25,10 +26,27 @@ namespace LitLab.CyberTitans.Battlefield
         [SerializeField] private CharacterDataProviderSO _characterDataProvider = default;
         [SerializeField] private CharacterSpawnerSO _characterSpawner = default;
 
+        [BoxGroup(AttributeConstants.LISTENING_TO)]
+        [SerializeField] private VoidEventChannelSO _onCombatPhaseFinishedChannel = default;
+
         [Space(5)]
         [SerializeField] private Transform[] _spownPoints = default;
 
         private IList<Character> _enemies = new List<Character>();
+
+        #endregion
+
+        #region Engine Methods
+
+        protected virtual void Awake()
+        {
+            RegisterListeners();
+        }
+
+        protected virtual void OnDestroy()
+        {
+            UnregisterListeners();
+        }
 
         #endregion
 
@@ -53,7 +71,22 @@ namespace LitLab.CyberTitans.Battlefield
             }
         }
 
-        public void DestroyEnemies()
+        private void RegisterListeners()
+        {
+            _onCombatPhaseFinishedChannel.OnEventRaised += OnCombatPhaseFinishedChannel;
+        }
+
+        private void UnregisterListeners()
+        {
+            _onCombatPhaseFinishedChannel.OnEventRaised -= OnCombatPhaseFinishedChannel;
+        }
+
+        private void OnCombatPhaseFinishedChannel()
+        {
+            DestroyEnemies();
+        }
+
+        private void DestroyEnemies()
         {
             foreach (var enemy in _enemies)
             {

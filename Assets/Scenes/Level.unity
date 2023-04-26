@@ -6010,6 +6010,7 @@ MonoBehaviour:
   _initialSettings: {fileID: 11400000, guid: 63141476bc399aa4eaaa1a0cd7180333, type: 2}
   _characterDataProvider: {fileID: 11400000, guid: 3f230afb79e67b042bfb27878c57397a, type: 2}
   _characterSpawner: {fileID: 11400000, guid: 5611a130d99f36d478e7a994f6982995, type: 2}
+  _onCombatPhaseFinishedChannel: {fileID: 11400000, guid: c564744d3677bc340bb0cc191966a520, type: 2}
   _spownPoints:
   - {fileID: 2060871798128553010}
   - {fileID: 2389134256335319737}
@@ -9437,8 +9438,8 @@ MonoBehaviour:
   _roundManagerSO: {fileID: 11400000, guid: ecdc3e3ee6a851a4985b1110c192e4b3, type: 2}
   _onPreparationPhaseStartedChannel: {fileID: 11400000, guid: 1aaf3eaa0290b2b418c9c2202885a94f, type: 2}
   _onPreparationPhaseFinishedChannel: {fileID: 11400000, guid: 89b850af02bd7784bae4860d0f963e27, type: 2}
-  _onBattlePhaseStartedChannel: {fileID: 11400000, guid: 809bf41f5dbdb024bb6c01011c3ebe35, type: 2}
-  _onBattlePhaseFinishedChannel: {fileID: 11400000, guid: c564744d3677bc340bb0cc191966a520, type: 2}
+  _onCombatPhaseStartedChannel: {fileID: 11400000, guid: 809bf41f5dbdb024bb6c01011c3ebe35, type: 2}
+  _onCombatPhaseFinishedChannel: {fileID: 11400000, guid: c564744d3677bc340bb0cc191966a520, type: 2}
 --- !u!1 &1027470469
 GameObject:
   m_ObjectHideFlags: 0
@@ -10778,6 +10779,7 @@ MonoBehaviour:
   _onDeselectCharacterChannel: {fileID: 11400000, guid: bf78ad5e971f809499cbf8a2ad18d4e1, type: 2}
   _onPreparationPhaseStartedChannel: {fileID: 11400000, guid: 1aaf3eaa0290b2b418c9c2202885a94f, type: 2}
   _onPreparationPhaseFinishedChannel: {fileID: 11400000, guid: 89b850af02bd7784bae4860d0f963e27, type: 2}
+  _onCombatPhaseFinishedChannel: {fileID: 11400000, guid: c564744d3677bc340bb0cc191966a520, type: 2}
   _onCancelSelectionChannel: {fileID: 11400000, guid: 4395510e25d152341ba94883b5aae2ce, type: 2}
   _levelEconomyManager: {fileID: 11400000, guid: 5e4d2adc90da8ce428f1d8541ef178e0, type: 2}
 --- !u!1 &1159345027

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _description: Provides initial values to configure EnemyBattlefieldController.
   _minEnemyAmount: 1
-  _maxEnemyAmount: 7
-  _generationDelay: 1
+  _maxEnemyAmount: 8
+  _generationDelay: 0.3

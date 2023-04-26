@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: BattleDirectorSO.cs
+// File name: CombatDirectorSO.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 25, 2023
@@ -13,8 +13,8 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Rounds
 {
-    [CreateAssetMenu(fileName = "BattleDirector", menuName = "CyberTitans/Rounds/Battle Director")]
-    public class BattleDirectorSO : DescriptionBaseSO
+    [CreateAssetMenu(fileName = "CombatDirector", menuName = "CyberTitans/Rounds/Combat Director")]
+    public class CombatDirectorSO : DescriptionBaseSO
     {
         #region Fields
 
@@ -24,17 +24,17 @@ namespace LitLab.CyberTitans.Rounds
 
         #region Methods
 
-        public async UniTask<BattleResult> StartNewBattle(CancellationToken cancellationToken)
+        public async UniTask<CombatResult> StartNewCombat(CancellationToken cancellationToken)
         {
             await UniTask.Delay
             (
-                delayTimeSpan: TimeSpan.FromSeconds(_roundSettings.BattleDuration),
+                delayTimeSpan: TimeSpan.FromSeconds(_roundSettings.CombatDuration),
                 cancellationToken: cancellationToken
             );
 
-            int num = UnityEngine.Random.Range(0,21);
+            int num = UnityEngine.Random.Range(1,11);
 
-            return num <= 10 ? BattleResult.Won : BattleResult.Lost;
+            return num <= 5 ? CombatResult.Won : CombatResult.Lost;
         }
 
         #endregion

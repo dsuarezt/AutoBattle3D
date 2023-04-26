@@ -27,6 +27,14 @@ namespace LitLab.CyberTitans.Level
             GLDebug.Log("Level Finished.",Color.magenta);
 
             // TODO: Check lives
+            if (_levelController.LevelEconomyManager.LivesAmount > 1)
+            {
+                GLDebug.Log("You win!!!!", Color.yellow);
+            }
+            else
+            {
+                GLDebug.Log("You lost!!!!", Color.red);
+            }
         }
 
         #endregion

@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: LevelBattleFinishedState.cs
+// File name: LevelCombatFinishedState.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 26, 2023
@@ -9,11 +9,11 @@ using LitLab.CyberTitans.Rounds;
 
 namespace LitLab.CyberTitans.Level
 {
-    public class LevelBattleFinishedState : LevelStateBase
+    public class LevelCombatFinishedState : LevelStateBase
     {
         #region Constructors
 
-        public LevelBattleFinishedState(LevelController levelController) : base(levelController)
+        public LevelCombatFinishedState(LevelController levelController) : base(levelController)
         {
         }
 
@@ -23,7 +23,8 @@ namespace LitLab.CyberTitans.Level
 
         public override void Enter()
         {
-            _levelController.OnBattlePhaseFinishedChannel?.RaiseEvent();
+            _levelController.OnCombatPhaseFinishedChannel?.RaiseEvent();
+
             RoundManagerSO roundManager = _levelController.RoundManager;
             roundManager.Reward();
 
@@ -33,7 +34,6 @@ namespace LitLab.CyberTitans.Level
             }
             else
             {
-                _levelController.EnemyBattlefieldController.DestroyEnemies();
                 _levelController.ChangeState(nameof(LevelPreparationStartedState));
             }
         }

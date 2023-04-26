@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: LevelBattleStartedState.cs
+// File name: LevelCombatStartedState.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 26, 2023
@@ -10,11 +10,11 @@ using System.Threading;
 
 namespace LitLab.CyberTitans.Level
 {
-    public class LevelBattleStartedState : LevelStateBase 
+    public class LevelCombatStartedState : LevelStateBase 
 	{
         #region Constructors
 
-        public LevelBattleStartedState(LevelController levelController) : base(levelController)
+        public LevelCombatStartedState(LevelController levelController) : base(levelController)
         {
         }
 
@@ -24,19 +24,19 @@ namespace LitLab.CyberTitans.Level
 
         public override void Enter()
         {
-            StartBattlePhaseAsync().Forget();
+            StartCombatPhaseAsync().Forget();
         }
 
-        private async UniTask StartBattlePhaseAsync()
+        private async UniTask StartCombatPhaseAsync()
         {
-            _levelController.OnBattlePhaseStartedChannel?.RaiseEvent();
+            _levelController.OnCombatPhaseStartedChannel?.RaiseEvent();
 
             CancellationToken cancellationToken = _levelController.GetCancellationToken();
-            await _levelController.RoundManager.StartBattlePhaseAsync(cancellationToken);
+            await _levelController.RoundManager.StartCombatPhaseAsync(cancellationToken);
 
             if (!cancellationToken.IsCancellationRequested)
             {
-                _levelController.ChangeState(nameof(LevelBattleFinishedState));
+                _levelController.ChangeState(nameof(LevelCombatFinishedState));
             }
         }
 

@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b275b761cead96c4ea66436c77687d58, type: 3}
-  m_Name: OnBattlePhaseStartedChannel
+  m_Name: OnCombatPhaseStartedChannel
   m_EditorClassIdentifier: 
   _description: 

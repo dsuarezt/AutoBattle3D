@@ -19,7 +19,7 @@ namespace LitLab.CyberTitans.Battlefield
         [Header(AttributeConstants.ENEMY_GENERATION)]
         [SerializeField] private int _minEnemyAmount = default;
         [SerializeField] private int _maxEnemyAmount = default;
-        [SerializeField] private int _generationDelay = default;
+        [SerializeField] private float _generationDelay = default;
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace LitLab.CyberTitans.Battlefield
 
         public int MinEnemyAmount => _minEnemyAmount;
         public int MaxEnemyAmount => _maxEnemyAmount;
-        public int GenerationDelay => _generationDelay;
+        public float GenerationDelay => _generationDelay;
 
         #endregion
     }

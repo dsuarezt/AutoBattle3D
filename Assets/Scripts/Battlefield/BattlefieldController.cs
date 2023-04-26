@@ -5,7 +5,6 @@
 // Created on: April 23, 2023
 //-----------------------------------------------------------------------
 
-using System.Runtime.Remoting.Messaging;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Level;
 using LitLab.CyberTitans.Shared;
@@ -24,6 +23,9 @@ namespace LitLab.CyberTitans.Battlefield
 
         [BoxGroup(AttributeConstants.LISTENING_TO)]
         [SerializeField] private VoidEventChannelSO _onPreparationPhaseFinishedChannel = default;
+
+        [BoxGroup(AttributeConstants.LISTENING_TO)]
+        [SerializeField] private VoidEventChannelSO _onCombatPhaseFinishedChannel = default;
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
         [SerializeField] private VoidEventChannelSO _onCancelSelectionChannel = default;
@@ -48,6 +50,7 @@ namespace LitLab.CyberTitans.Battlefield
             base.RegisterListeners();
             _onPreparationPhaseStartedChannel.OnEventRaised += OnPreparationPhaseStarted;
             _onPreparationPhaseFinishedChannel.OnEventRaised += OnPreparationPhaseFinished;
+            _onCombatPhaseFinishedChannel.OnEventRaised += OnCombatPhaseFinishedChannel;
         }
 
         protected override void UnregisterListeners()
@@ -55,6 +58,7 @@ namespace LitLab.CyberTitans.Battlefield
             base.UnregisterListeners();
             _onPreparationPhaseStartedChannel.OnEventRaised -= OnPreparationPhaseStarted;
             _onPreparationPhaseFinishedChannel.OnEventRaised -= OnPreparationPhaseFinished;
+            _onCombatPhaseFinishedChannel.OnEventRaised -= OnCombatPhaseFinishedChannel;
         }
 
         protected override void OnSelectCharacter(object sender, Slot slot)
@@ -77,6 +81,11 @@ namespace LitLab.CyberTitans.Battlefield
                 ActivateSlots(false);
                 AllowCharacterSelection(true);
             }
+        }
+
+        private bool Contains(Character character)
+        {
+            return _characters.Contains(character);
         }
 
         private void OnPreparationPhaseStarted()
@@ -108,9 +117,17 @@ namespace LitLab.CyberTitans.Battlefield
             }
         }
 
-        private bool Contains(Character character)
+        private void OnCombatPhaseFinishedChannel()
         {
-            return _characters.Contains(character);
+            ResetCharacters();
+        }
+
+        private void ResetCharacters()
+        {
+            foreach (var selector in _characterSelectors)
+            {
+                selector.Slot.ResetCharacter();
+            }
         }
 
         #endregion
