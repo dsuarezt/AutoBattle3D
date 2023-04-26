@@ -6,6 +6,7 @@
 //-----------------------------------------------------------------------
 
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 
 namespace LitLab.CyberTitans.Level
@@ -29,6 +30,11 @@ namespace LitLab.CyberTitans.Level
 
         private async UniTask StartCombatPhaseAsync()
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
+
+            _levelController.CombatPhaseMessage.SetActive(false);
+            _levelController.ActiveBattlefieldInputBlocker(false);
+
             _levelController.OnCombatPhaseStartedChannel?.RaiseEvent();
 
             CancellationToken cancellationToken = _levelController.GetCancellationToken();

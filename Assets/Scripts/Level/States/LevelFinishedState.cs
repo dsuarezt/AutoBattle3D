@@ -30,10 +30,12 @@ namespace LitLab.CyberTitans.Level
             if (_levelController.LevelEconomyManager.LivesAmount > 1)
             {
                 GLDebug.Log("You win!!!!", Color.yellow);
+                _levelController.WinMenu.SetActive(true);
             }
             else
             {
                 GLDebug.Log("You lost!!!!", Color.red);
+                _levelController.LostMenu.SetActive(true);
             }
         }
 

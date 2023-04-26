@@ -12,6 +12,7 @@ using LitLab.CyberTitans.Rounds;
 using LitLab.CyberTitans.Shared;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LitLab.CyberTitans.Level
 {
@@ -27,12 +28,19 @@ namespace LitLab.CyberTitans.Level
         [SerializeField] private SelectionControllerSO _selectionController = default;
         [SerializeField] private RoundManagerSO _roundManagerSO = default;
 
+        [Header(AttributeConstants.UI_ELEMENTS)]
+        [SerializeField] private GameObject _levelUI = default;
+        [SerializeField] private GameObject _preparationPhaseMessage = default;
+        [SerializeField] private GameObject _combatPhaseMessage = default;
+        [SerializeField] private GameObject _winMenu = default;
+        [SerializeField] private GameObject _lostMenu = default;
+
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
         [SerializeField] private VoidEventChannelSO _onPreparationPhaseStartedChannel = default;
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
         [SerializeField] private VoidEventChannelSO _onPreparationPhaseFinishedChannel = default;
-        
+
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
         [SerializeField] private VoidEventChannelSO _onCombatPhaseStartedChannel = default;
 
@@ -46,6 +54,11 @@ namespace LitLab.CyberTitans.Level
 
         #region Properties
 
+        public GameObject LevelUI => _levelUI;
+        public GameObject PreparationPhaseMessage => _preparationPhaseMessage;
+        public GameObject CombatPhaseMessage => _combatPhaseMessage;
+        public GameObject WinMenu => _winMenu;
+        public GameObject LostMenu => _lostMenu;
         public LevelEconomyManagerSO LevelEconomyManager => _levelEconomyManager;
         public EnemyBattlefieldController EnemyBattlefieldController => _enemyBattlefieldController;
         public RoundManagerSO RoundManager => _roundManagerSO;
@@ -63,11 +76,6 @@ namespace LitLab.CyberTitans.Level
             ConfigureStates();
         }
 
-        private void Start()
-        {
-            ChangeState(nameof(LevelInitialState));
-        }
-
         private void OnDestroy()
         {
             Reset();
@@ -76,6 +84,16 @@ namespace LitLab.CyberTitans.Level
         #endregion
 
         #region Methods
+
+        public void StartLevel()
+        {
+            ChangeState(nameof(LevelInitialState));
+        }
+
+        public void RestartLevel()
+        {
+            SceneManager.LoadScene(0);
+        }
 
         public void ChangeState(string newStateName)
         {
@@ -97,7 +115,7 @@ namespace LitLab.CyberTitans.Level
 
         public CancellationToken GetCancellationToken()
         {
-           return this.GetCancellationTokenOnDestroy();
+            return this.GetCancellationTokenOnDestroy();
         }
 
         private void ConfigureStates()

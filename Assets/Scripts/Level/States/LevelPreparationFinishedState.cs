@@ -6,6 +6,7 @@
 //-----------------------------------------------------------------------
 
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 
 namespace LitLab.CyberTitans.Level
@@ -24,6 +25,8 @@ namespace LitLab.CyberTitans.Level
 
         public override void Enter()
         {
+            _levelController.CombatPhaseMessage.SetActive(true);
+            _levelController.ActiveBattlefieldInputBlocker(true);
             FinishPreparationPhaseAsync().Forget();
         }
 

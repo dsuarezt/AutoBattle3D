@@ -5,6 +5,7 @@
 // Created on: April 24, 2023
 //-----------------------------------------------------------------------
 
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 
@@ -24,11 +25,17 @@ namespace LitLab.CyberTitans.Level
 
         public override void Enter()
         {
+            _levelController.PreparationPhaseMessage.SetActive(true);
             StartPreparationPhaseAsync().Forget();
         }
 
         private async UniTask StartPreparationPhaseAsync()
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(2));
+
+            _levelController.PreparationPhaseMessage.SetActive(false);
+            _levelController.ActiveBattlefieldInputBlocker(false);
+
             _levelController.OnPreparationPhaseStartedChannel?.RaiseEvent();
 
             CancellationToken cancellationToken = _levelController.GetCancellationToken();
