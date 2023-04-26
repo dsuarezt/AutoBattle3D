@@ -24,6 +24,7 @@ namespace LitLab.CyberTitans
         public override void Enter()
         {
             _levelController.Initialize();
+            _levelController.ActiveBattlefieldBlocker(false);
             _levelController.ChangeState(nameof(LevelPreparationStartedState));
         }
 

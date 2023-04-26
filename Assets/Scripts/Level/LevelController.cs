@@ -20,6 +20,7 @@ namespace LitLab.CyberTitans.Level
         #region Fields
 
         [SerializeField] private EnemyBattlefieldController _enemyBattlefieldController;
+        [SerializeField] private GameObject _enemyBattlefieldBlocker;
 
         [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
@@ -87,6 +88,11 @@ namespace LitLab.CyberTitans.Level
             _levelEconomyManager?.Initialize();
             _selectionController?.Initialize();
             _roundManagerSO?.Initialize();
+        }
+
+        public void ActiveBattlefieldBlocker(bool value)
+        {
+            _enemyBattlefieldBlocker.SetActive(value);
         }
 
         public CancellationToken GetCancellationToken()
