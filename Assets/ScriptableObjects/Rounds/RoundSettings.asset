@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _description: Provides initial values to configure RoundManager.
   _roundAmount: 4
-  _preparationTime: 1
+  _preparationTime: 2
   _goldAmountPerWinStreak: 1
   _goldAmountPerCombatWon: 5
-  _combatDuration: 1
+  _combatTime: 1

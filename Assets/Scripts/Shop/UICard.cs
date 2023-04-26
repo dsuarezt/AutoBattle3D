@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: Card.cs
+// File name: UICard.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 22, 2023
@@ -13,11 +13,11 @@ using UnityEngine.UI;
 
 namespace LitLab.CyberTitans.Shop
 {
-    public class Card : MonoBehaviour
+    public class UICard : MonoBehaviour
     {
         #region Fields
 
-        [SerializeField] private Shop _shop = default;
+        [SerializeField] private UIShop _shop = default;
 
         [Header(AttributeConstants.UI_ELEMENTS)]
         [SerializeField] private GameObject _cardContent = default;

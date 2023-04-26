@@ -28,7 +28,7 @@ namespace LitLab.CyberTitans.Rounds
         {
             await UniTask.Delay
             (
-                delayTimeSpan: TimeSpan.FromSeconds(_roundSettings.CombatDuration),
+                delayTimeSpan: TimeSpan.FromSeconds(_roundSettings.CombatTime),
                 cancellationToken: cancellationToken
             );
 

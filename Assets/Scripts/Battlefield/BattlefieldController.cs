@@ -88,7 +88,7 @@ namespace LitLab.CyberTitans.Battlefield
             return _characters.Contains(character);
         }
 
-        private void OnPreparationPhaseStarted()
+        private void OnPreparationPhaseStarted(object sender)
         {
             _isPreparationPhase = true;
             AllowCharacterSelection(true);
@@ -103,7 +103,7 @@ namespace LitLab.CyberTitans.Battlefield
             }
         }
 
-        private void OnPreparationPhaseFinished()
+        private void OnPreparationPhaseFinished(object sender)
         {
             _isPreparationPhase = false;
             ActivateSlots(false);
@@ -117,7 +117,7 @@ namespace LitLab.CyberTitans.Battlefield
             }
         }
 
-        private void OnCombatPhaseFinishedChannel()
+        private void OnCombatPhaseFinishedChannel(object sender)
         {
             ResetCharacters();
         }

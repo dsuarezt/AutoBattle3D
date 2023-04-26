@@ -63,7 +63,7 @@ namespace LitLab.CyberTitans.Inventory
             _onCancelSelectionChannel.OnEventRaised -= OnCancelSelection;
         }
 
-        private void OnCancelSelection()
+        private void OnCancelSelection(object sender)
         {
             ActivateSlots(false);
         }

@@ -81,7 +81,7 @@ namespace LitLab.CyberTitans.Battlefield
             _onCombatPhaseFinishedChannel.OnEventRaised -= OnCombatPhaseFinishedChannel;
         }
 
-        private void OnCombatPhaseFinishedChannel()
+        private void OnCombatPhaseFinishedChannel(object sender)
         {
             DestroyEnemies();
         }

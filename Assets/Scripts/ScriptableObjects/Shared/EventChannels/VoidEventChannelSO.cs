@@ -17,7 +17,7 @@ namespace LitLab.CyberTitans.Shared
     {
         #region Events
 
-        public event Action OnEventRaised;
+        public event Action<object> OnEventRaised;
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace LitLab.CyberTitans.Shared
         {
             GLDebug.Log($"Raising event: {name}.");
 
-            OnEventRaised?.Invoke();
+            OnEventRaised?.Invoke(this);
         }
 
 #if UNITY_EDITOR

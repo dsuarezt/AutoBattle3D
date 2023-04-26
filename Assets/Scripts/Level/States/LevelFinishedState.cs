@@ -25,7 +25,7 @@ namespace LitLab.CyberTitans.Level
         public override void Enter()
         {
             GLDebug.Log("Level Finished.",Color.magenta);
-            _levelController.ActiveBattlefieldBlocker(true);
+            _levelController.ActiveBattlefieldInputBlocker(true);
 
             if (_levelController.LevelEconomyManager.LivesAmount > 1)
             {

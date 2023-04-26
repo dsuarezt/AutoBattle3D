@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: Shop.cs
+// File name: UIShop.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 22, 2023
@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Shop
 {
-    public class Shop : MonoBehaviour
+    public class UIShop : MonoBehaviour
     {
         #region Fields
 
@@ -26,7 +26,7 @@ namespace LitLab.CyberTitans.Shop
 
         [Header(AttributeConstants.UI_ELEMENTS)]
         [SerializeField] private TMP_Text _refreshCostText = default;
-        [SerializeField] private Card[] _cards = default;
+        [SerializeField] private UICard[] _cards = default;
 
         [Header(AttributeConstants.INVENTORY_SYSTEM)]
         [SerializeField] private InventoryController _inventory = default;
@@ -64,7 +64,7 @@ namespace LitLab.CyberTitans.Shop
             }
         }
 
-        public void BuyCharacter(CharacterDataSO characterData, Card card)
+        public void BuyCharacter(CharacterDataSO characterData, UICard card)
         {
             if (_inventory.AnyEmptySlot)
             {
@@ -96,7 +96,7 @@ namespace LitLab.CyberTitans.Shop
             }
         }
 
-        private void GenerateNewCard(Card card)
+        private void GenerateNewCard(UICard card)
         {
             _temCharacterData = _characterDataProvider.GetRandomCharacterData();
 

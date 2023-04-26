@@ -143,7 +143,7 @@ namespace LitLab.CyberTitans.Level
             _targetSlot = null;
         }
 
-        private void OnCancelSelection()
+        private void OnCancelSelection(object sender)
         {
             _objectToMousePosition.Cancel();
             ReturnCharacterToItsSlot();

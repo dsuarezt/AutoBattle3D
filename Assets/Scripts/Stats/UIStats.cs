@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: StatsPanel.cs
+// File name: UIStats.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 22, 2023
@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Level
 {
-    public class StatsPanel : MonoBehaviour
+    public class UIStats : MonoBehaviour
     {
         #region Fields
 
