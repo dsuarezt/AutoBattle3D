@@ -5,6 +5,7 @@
 // Created on: April 22, 2023
 //-----------------------------------------------------------------------
 
+using System;
 using System.Linq;
 using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Shared;
@@ -50,6 +51,14 @@ namespace LitLab.CyberTitans.Inventory
         }
 
         public override bool CanReceiveACharacter(Character character) => true;
+
+        public Character[] GetCharacters(int amount)
+        {
+            return _slots.Where(s => s.Character != null)
+                         .Take(amount)
+                         .Select(s => s.RemoveCharacter())
+                         .ToArray();
+        }
 
         protected override void RegisterListeners()
         {

@@ -20,8 +20,9 @@ namespace LitLab.CyberTitans.Level
     {
         #region Fields
 
-        [SerializeField] private EnemyBattlefieldController _enemyBattlefieldController;
-        [SerializeField] private GameObject _battlefieldInputBlocker;
+        [SerializeField] private BattlefieldController _battlefieldController = default;
+        [SerializeField] private EnemyBattlefieldController _enemyBattlefieldController = default;
+        [SerializeField] private GameObject _battlefieldInputBlocker = default;
 
         [Header(AttributeConstants.SCRIPTABLE_OBJECTS)]
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
@@ -60,6 +61,7 @@ namespace LitLab.CyberTitans.Level
         public GameObject WinMenu => _winMenu;
         public GameObject LostMenu => _lostMenu;
         public LevelEconomyManagerSO LevelEconomyManager => _levelEconomyManager;
+        public BattlefieldController BattlefieldController => _battlefieldController;
         public EnemyBattlefieldController EnemyBattlefieldController => _enemyBattlefieldController;
         public RoundManagerSO RoundManager => _roundManagerSO;
         public VoidEventChannelSO OnPreparationPhaseStartedChannel => _onPreparationPhaseStartedChannel;

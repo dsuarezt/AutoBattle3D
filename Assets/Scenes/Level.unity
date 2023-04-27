@@ -9064,6 +9064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1eb0b0e7077c0742881551c75e2cfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _battlefieldController: {fileID: 1156319855}
   _enemyBattlefieldController: {fileID: 753654430}
   _battlefieldInputBlocker: {fileID: 925732266}
   _levelEconomyManager: {fileID: 11400000, guid: 5e4d2adc90da8ce428f1d8541ef178e0, type: 2}
@@ -10557,6 +10558,7 @@ MonoBehaviour:
   _onCancelSelectionChannel: {fileID: 11400000, guid: 4395510e25d152341ba94883b5aae2ce, type: 2}
   _levelEconomyManager: {fileID: 11400000, guid: 5e4d2adc90da8ce428f1d8541ef178e0, type: 2}
   _enemyBattlefield: {fileID: 753654430}
+  _inventory: {fileID: 1847249811}
 --- !u!1 &1157948518
 GameObject:
   m_ObjectHideFlags: 0

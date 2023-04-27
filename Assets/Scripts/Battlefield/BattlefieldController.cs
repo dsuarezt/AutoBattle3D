@@ -5,7 +5,9 @@
 // Created on: April 23, 2023
 //-----------------------------------------------------------------------
 
+using System.Linq;
 using LitLab.CyberTitans.Characters;
+using LitLab.CyberTitans.Inventory;
 using LitLab.CyberTitans.Level;
 using LitLab.CyberTitans.Shared;
 using LitLab.CyberTitans.Slots;
@@ -36,6 +38,7 @@ namespace LitLab.CyberTitans.Battlefield
         [Space(5)]
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
         [SerializeField] private EnemyBattlefieldController _enemyBattlefield = default;
+        [SerializeField] private InventoryController _inventory = default;
 
         private bool _isPreparationPhase;
         private Character _characterSelected;
@@ -58,6 +61,13 @@ namespace LitLab.CyberTitans.Battlefield
         public override bool CanReceiveACharacter(Character character)
         {
             return Contains(character) || _characters.Count < _levelEconomyManager.PlayerLevel;
+        }
+
+        public void CheckCharacterAmountOnBattlefield()
+        {
+            int difference = _levelEconomyManager.PlayerLevel - _characters.Count;
+
+            if (difference > 0) ExtractCharactersFromInventory(difference);
         }
 
         protected override void RegisterListeners()
@@ -152,6 +162,18 @@ namespace LitLab.CyberTitans.Battlefield
             foreach (var selector in _characterSelectors)
             {
                 selector.Slot.ResetCharacter();
+            }
+        }
+
+        private void ExtractCharactersFromInventory(int amount)
+        {
+            Slot[] emptySlots = _slots.Where(s => s.IsEmpty).Take(amount).ToArray();
+            Character[] characters = _inventory.GetCharacters(amount);
+            int length = characters.Length;
+
+            for (int i = 0; i < length; i++)
+            {
+                emptySlots[i].AddNewCharacter(characters[i]);
             }
         }
 
