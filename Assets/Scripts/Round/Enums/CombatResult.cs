@@ -9,6 +9,7 @@ namespace LitLab.CyberTitans
 {
     public enum CombatResult
     {
+        None,
         Won,
         Lost
     }

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Level;
 using LitLab.CyberTitans.Shared;
 using NaughtyAttributes;
@@ -38,7 +39,7 @@ namespace LitLab.CyberTitans.Rounds
         #region Properties
 
         public bool IsTheLastRound => _combatResults.Count == _initialSettings.RoundAmount;
-        public CombatResult? LastCombatResult => _combatResults?.LastOrDefault();
+        public CombatResult LastCombatResult => _combatResults.LastOrDefault();
 
         #endregion
 
@@ -47,8 +48,8 @@ namespace LitLab.CyberTitans.Rounds
         public void Initialize()
         {
             _countdownTimer = new CountdownTimer();
-            _countdownTimer.OnValueChangedEvent += OnTimerValueChanged;
             _combatResults = new List<CombatResult>();
+            RegisterListeners();
         }
 
         public async UniTask StartPreparationPhaseAsync(CancellationToken cancellationToken)
@@ -56,29 +57,27 @@ namespace LitLab.CyberTitans.Rounds
             await _countdownTimer.StartAsync(_initialSettings.PreparationTime, cancellationToken);
         }
 
-        public async UniTask StartCombatPhaseAsync(CancellationToken cancellationToken)
+        public async UniTask StartCombatPhaseAsync(IList<Character> characters,
+                                                   CancellationToken cancellationToken)
         {
-            CombatResult combatResult = await _combatDirector.StartNewCombatAsync(cancellationToken);
+            CombatResult combatResult = await _combatDirector.StartNewCombatAsync(characters, cancellationToken);
 
             if (!cancellationToken.IsCancellationRequested) _combatResults.Add(combatResult);
         }
 
         public void Reward()
         {
-            CombatResult? lastCombatResult = LastCombatResult;
+            CombatResult lastCombatResult = LastCombatResult;
 
-            if (lastCombatResult.HasValue)
+            if (lastCombatResult == CombatResult.Won)
             {
-                if (lastCombatResult.Value == CombatResult.Won)
-                {
-                    int goldAmountPerWinStreak = !_isWinStreakLost ? GetGoldAmountPerWinStreak() : 0;
-                    int amount = _initialSettings.GoldAmountPerCombatWon + goldAmountPerWinStreak;
-                    _levelEconomyManager.Deposit(amount);
-                }
-                else
-                {
-                    _levelEconomyManager.ConsumeLife();
-                }
+                int goldAmountPerWinStreak = !_isWinStreakLost ? GetGoldAmountPerWinStreak() : 0;
+                int amount = _initialSettings.GoldAmountPerCombatWon + goldAmountPerWinStreak;
+                _levelEconomyManager.Deposit(amount);
+            }
+            else if (lastCombatResult == CombatResult.Lost)
+            {
+                _levelEconomyManager.ConsumeLife();
             }
         }
 
@@ -96,6 +95,17 @@ namespace LitLab.CyberTitans.Rounds
 
             _combatResults = null;
             _isWinStreakLost = false;
+            UnregisterListeners();
+        }
+
+        private void RegisterListeners()
+        {
+            _countdownTimer.OnValueChangedEvent += OnTimerValueChanged;
+        }
+
+        private void UnregisterListeners()
+        {
+            _countdownTimer.OnValueChangedEvent -= OnTimerValueChanged;
         }
 
         private void OnTimerValueChanged(int value)

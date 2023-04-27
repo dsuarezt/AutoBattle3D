@@ -78,9 +78,9 @@ namespace LitLab.CyberTitans.Rounds
 
         private void OnCombatPhaseFinished(object sender)
         {
-            CombatResult? combatResult = _roundManager.LastCombatResult;
+            CombatResult combatResult = _roundManager.LastCombatResult;
 
-            if (combatResult.HasValue && combatResult.Value == CombatResult.Won)
+            if (combatResult == CombatResult.Won)
             {
                 _roundItems[_index].ChangeToWinState();
             }

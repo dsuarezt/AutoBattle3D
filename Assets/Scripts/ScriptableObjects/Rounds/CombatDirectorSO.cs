@@ -6,8 +6,10 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using LitLab.CyberTitans.Characters;
 using LitLab.CyberTitans.Shared;
 using UnityEngine;
 
@@ -24,7 +26,8 @@ namespace LitLab.CyberTitans.Rounds
 
         #region Methods
 
-        public async UniTask<CombatResult> StartNewCombatAsync(CancellationToken cancellationToken)
+        public async UniTask<CombatResult> StartNewCombatAsync(IList<Character> characters,
+                                                               CancellationToken cancellationToken)
         {
             await UniTask.Delay
             (
@@ -32,13 +35,19 @@ namespace LitLab.CyberTitans.Rounds
                 cancellationToken: cancellationToken
             );
 
-            var result = CombatResult.Lost;
+            var result = CombatResult.None;
 
             if (!cancellationToken.IsCancellationRequested)
             {
-                int num = UnityEngine.Random.Range(1, 11);
-
-                if (num <= 5) result = CombatResult.Won;
+                if (characters.Count == 0)
+                {
+                    result = CombatResult.Lost;
+                }
+                else
+                {
+                    int num = UnityEngine.Random.Range(1, 11);
+                    result = num <= 5 ? CombatResult.Won : CombatResult.Lost;
+                }
             }
 
             return result;

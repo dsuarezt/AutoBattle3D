@@ -38,7 +38,11 @@ namespace LitLab.CyberTitans.Level
             _levelController.OnCombatPhaseStartedChannel?.RaiseEvent();
 
             CancellationToken cancellationToken = _levelController.GetCancellationToken();
-            await _levelController.RoundManager.StartCombatPhaseAsync(cancellationToken);
+            await _levelController.RoundManager.StartCombatPhaseAsync
+            (
+                _levelController.BattlefieldController.Characters,
+                cancellationToken
+            );
 
             if (!cancellationToken.IsCancellationRequested)
             {
