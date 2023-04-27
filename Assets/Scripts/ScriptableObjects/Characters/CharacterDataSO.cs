@@ -21,11 +21,13 @@ namespace LitLab.CyberTitans.Characters
         [SerializeField] private Sprite _cardImage = default;
         [SerializeField] private int _health = 10;
         [SerializeField] private int _damage = 3;
+        [SerializeField] private float _movementSpeed = 3;
+        [SerializeField] private float _minDistanceToAttak = 1;
 
         #endregion
 
         #region Properties
-         
+
         public string CharacterName => _characterName;
         public Character CharacterPrefab => _characterPrefab;
         public RaritySO Rarity => _rarity;
@@ -33,6 +35,8 @@ namespace LitLab.CyberTitans.Characters
         public Sprite CardImage => _cardImage;
         public int Health => _health;
         public int Damage => _damage;
+        public float MovementSpeed => _movementSpeed;
+        public float MinDistanceToAttak => _minDistanceToAttak;
 
         #endregion
     }

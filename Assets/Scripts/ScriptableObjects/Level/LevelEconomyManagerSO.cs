@@ -117,10 +117,10 @@ namespace LitLab.CyberTitans.Level
 
         public void ResetOnExitPlayMode()
         {
-            Reset();
+            ResetLevelEconomy();
         }
 
-        public void Reset()
+        public void ResetLevelEconomy()
         {
             _goldAmount = 0;
             _livesAmount = 0;

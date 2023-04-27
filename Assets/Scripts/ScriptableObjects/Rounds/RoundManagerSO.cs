@@ -58,8 +58,9 @@ namespace LitLab.CyberTitans.Rounds
 
         public async UniTask StartCombatPhaseAsync(CancellationToken cancellationToken)
         {
-            CombatResult combatResult = await _combatDirector.StartNewCombat(cancellationToken);
-            _combatResults.Add(combatResult);
+            CombatResult combatResult = await _combatDirector.StartNewCombatAsync(cancellationToken);
+
+            if (!cancellationToken.IsCancellationRequested) _combatResults.Add(combatResult);
         }
 
         public void Reward()
@@ -83,10 +84,10 @@ namespace LitLab.CyberTitans.Rounds
 
         public void ResetOnExitPlayMode()
         {
-            Reset();
+            ResetRound();
         }
 
-        public void Reset()
+        public void ResetRound()
         {
             if (_countdownTimer != null)
             {

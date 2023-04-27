@@ -52,10 +52,10 @@ namespace LitLab.CyberTitans.Level
 
         public void ResetOnExitPlayMode()
         {
-            Reset();
+            ResetSelection();
         }
 
-        public void Reset()
+        public void ResetSelection()
         {
             UnregisterListeners();
             _currentSlot = null;

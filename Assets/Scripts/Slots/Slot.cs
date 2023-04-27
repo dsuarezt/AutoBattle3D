@@ -96,7 +96,7 @@ namespace LitLab.CyberTitans.Slots
         public void ResetCharacter()
         {
             _character?.transform.SetPositionAndRotation(_spawnPoint.position, _spawnPoint.rotation);
-            _character.Reset();
+            _character.ResetCharacter();
         }
 
         public Character RemoveCharacter()

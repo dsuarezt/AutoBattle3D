@@ -30,6 +30,12 @@ namespace LitLab.CyberTitans.Slots
 
         #endregion
 
+        #region Properties
+
+        public IList<Character> Characters => _characters;
+
+        #endregion
+
         #region Engine Methods
 
         protected virtual void Awake()

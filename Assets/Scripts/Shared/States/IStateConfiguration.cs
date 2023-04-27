@@ -1,19 +1,18 @@
 //-----------------------------------------------------------------------
-// File name: ILevelState.cs
+// File name: IStateConfiguration.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
-// Created on: April 24, 2023
+// Created on: April 27, 2023
 //-----------------------------------------------------------------------
 
-using LitLab.CyberTitans.Shared;
-
-namespace LitLab.CyberTitans.Level
+namespace LitLab.CyberTitans.Shared
 {
-    public interface ILevelState: IState
-    {
+    public interface IStateConfiguration
+	{
         #region Methods
 
-
+        void AddState(string stateName, IState state);
+        IState GetState(string stateName);
 
         #endregion
     }

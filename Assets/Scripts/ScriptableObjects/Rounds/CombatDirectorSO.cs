@@ -24,7 +24,7 @@ namespace LitLab.CyberTitans.Rounds
 
         #region Methods
 
-        public async UniTask<CombatResult> StartNewCombat(CancellationToken cancellationToken)
+        public async UniTask<CombatResult> StartNewCombatAsync(CancellationToken cancellationToken)
         {
             await UniTask.Delay
             (
@@ -32,9 +32,16 @@ namespace LitLab.CyberTitans.Rounds
                 cancellationToken: cancellationToken
             );
 
-            int num = UnityEngine.Random.Range(1,11);
+            var result = CombatResult.Lost;
 
-            return num <= 5 ? CombatResult.Won : CombatResult.Lost;
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                int num = UnityEngine.Random.Range(1, 11);
+
+                if (num <= 5) result = CombatResult.Won;
+            }
+
+            return result;
         }
 
         #endregion

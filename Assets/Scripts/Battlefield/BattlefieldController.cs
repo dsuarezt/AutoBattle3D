@@ -25,6 +25,9 @@ namespace LitLab.CyberTitans.Battlefield
         [SerializeField] private VoidEventChannelSO _onPreparationPhaseFinishedChannel = default;
 
         [BoxGroup(AttributeConstants.LISTENING_TO)]
+        [SerializeField] private VoidEventChannelSO _onCombatPhaseStartedChannel = default;
+
+        [BoxGroup(AttributeConstants.LISTENING_TO)]
         [SerializeField] private VoidEventChannelSO _onCombatPhaseFinishedChannel = default;
 
         [BoxGroup(AttributeConstants.BROADCASTING_ON)]
@@ -32,9 +35,21 @@ namespace LitLab.CyberTitans.Battlefield
 
         [Space(5)]
         [SerializeField] private LevelEconomyManagerSO _levelEconomyManager = default;
+        [SerializeField] private EnemyBattlefieldController _enemyBattlefield = default;
 
         private bool _isPreparationPhase;
         private Character _characterSelected;
+        private CharacterFinder _characterFinder;
+
+        #endregion
+
+        #region Engine Methods
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _characterFinder = new CharacterFinder(_enemyBattlefield.Enemies);
+        }
 
         #endregion
 
@@ -50,6 +65,7 @@ namespace LitLab.CyberTitans.Battlefield
             base.RegisterListeners();
             _onPreparationPhaseStartedChannel.OnEventRaised += OnPreparationPhaseStarted;
             _onPreparationPhaseFinishedChannel.OnEventRaised += OnPreparationPhaseFinished;
+            _onCombatPhaseStartedChannel.OnEventRaised += OnCombatPhaseStarted;
             _onCombatPhaseFinishedChannel.OnEventRaised += OnCombatPhaseFinishedChannel;
         }
 
@@ -58,6 +74,7 @@ namespace LitLab.CyberTitans.Battlefield
             base.UnregisterListeners();
             _onPreparationPhaseStartedChannel.OnEventRaised -= OnPreparationPhaseStarted;
             _onPreparationPhaseFinishedChannel.OnEventRaised -= OnPreparationPhaseFinished;
+            _onCombatPhaseStartedChannel.OnEventRaised -= OnCombatPhaseStarted;
             _onCombatPhaseFinishedChannel.OnEventRaised -= OnCombatPhaseFinishedChannel;
         }
 
@@ -114,6 +131,14 @@ namespace LitLab.CyberTitans.Battlefield
                 // If the preparation has finished and a character is being selected from the battlefield,
                 // it is necessary to deselect it to return it to its slot.
                 _onCancelSelectionChannel?.RaiseEvent();
+            }
+        }
+
+        private void OnCombatPhaseStarted(object sender)
+        {
+            foreach (var character in _characters)
+            {
+                character.Combat(_characterFinder);
             }
         }
 

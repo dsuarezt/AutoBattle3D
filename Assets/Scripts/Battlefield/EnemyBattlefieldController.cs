@@ -25,14 +25,25 @@ namespace LitLab.CyberTitans.Battlefield
         [SerializeField] private EnemyBattlefieldSettingsSO _initialSettings = default;
         [SerializeField] private CharacterDataProviderSO _characterDataProvider = default;
         [SerializeField] private CharacterSpawnerSO _characterSpawner = default;
+        [SerializeField] private SlotsControllerBase _battlefield = default;
+
+        [BoxGroup(AttributeConstants.LISTENING_TO)]
+        [SerializeField] private VoidEventChannelSO _onCombatPhaseStartedChannel = default;
 
         [BoxGroup(AttributeConstants.LISTENING_TO)]
         [SerializeField] private VoidEventChannelSO _onCombatPhaseFinishedChannel = default;
-
+        
         [Space(5)]
         [SerializeField] private Transform[] _spownPoints = default;
 
         private IList<Character> _enemies = new List<Character>();
+        private CharacterFinder _characterFinder;
+
+        #endregion
+
+        #region Properties
+
+        public IList<Character> Enemies => _enemies;
 
         #endregion
 
@@ -40,6 +51,7 @@ namespace LitLab.CyberTitans.Battlefield
 
         protected virtual void Awake()
         {
+            _characterFinder = new CharacterFinder(_battlefield.Characters);
             RegisterListeners();
         }
 
@@ -73,15 +85,25 @@ namespace LitLab.CyberTitans.Battlefield
 
         private void RegisterListeners()
         {
-            _onCombatPhaseFinishedChannel.OnEventRaised += OnCombatPhaseFinishedChannel;
+            _onCombatPhaseStartedChannel.OnEventRaised += OnCombatPhaseStarted;
+            _onCombatPhaseFinishedChannel.OnEventRaised += OnCombatPhaseFinished;
         }
 
         private void UnregisterListeners()
         {
-            _onCombatPhaseFinishedChannel.OnEventRaised -= OnCombatPhaseFinishedChannel;
+            _onCombatPhaseStartedChannel.OnEventRaised -= OnCombatPhaseStarted;
+            _onCombatPhaseFinishedChannel.OnEventRaised -= OnCombatPhaseFinished;
         }
 
-        private void OnCombatPhaseFinishedChannel(object sender)
+        private void OnCombatPhaseStarted(object obj)
+        {
+            foreach (var enemy in _enemies)
+            {
+                enemy.Combat(_characterFinder);
+            }
+        }
+
+        private void OnCombatPhaseFinished(object sender)
         {
             DestroyEnemies();
         }

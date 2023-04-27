@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: LevelStateConfiguration.cs
+// File name: StateConfiguration.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 24, 2023
@@ -7,28 +7,28 @@
 
 using System.Collections.Generic;
 
-namespace LitLab.CyberTitans.Level
+namespace LitLab.CyberTitans.Shared
 {
-    public class LevelStateConfiguration: ILevelStateConfiguration
+    public class StateConfiguration: IStateConfiguration
     {
         #region Fields
 
-        private IDictionary<string, ILevelState> _states;
+        private IDictionary<string, IState> _states;
 
         #endregion
 
         #region Constructors
 
-        public LevelStateConfiguration()
+        public StateConfiguration()
         {
-            _states = new Dictionary<string, ILevelState>();
+            _states = new Dictionary<string, IState>();
         }
 
         #endregion
 
         #region Methods
 
-        public void AddState(string stateName, ILevelState state)
+        public void AddState(string stateName, IState state)
         {
             if (!_states.ContainsKey(stateName))
             {
@@ -36,7 +36,7 @@ namespace LitLab.CyberTitans.Level
             }
         }
 
-        public ILevelState GetState(string stateName)
+        public IState GetState(string stateName)
         {
             if (_states.ContainsKey(stateName))
             {

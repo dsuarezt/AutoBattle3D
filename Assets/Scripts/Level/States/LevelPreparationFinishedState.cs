@@ -5,9 +5,8 @@
 // Created on: April 25, 2023
 //-----------------------------------------------------------------------
 
-using Cysharp.Threading.Tasks;
-using System;
 using System.Threading;
+using Cysharp.Threading.Tasks;
 
 namespace LitLab.CyberTitans.Level
 {

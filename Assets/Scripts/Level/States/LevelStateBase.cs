@@ -11,7 +11,7 @@ namespace LitLab.CyberTitans.Level
 	{
         #region Fields
 
-        protected LevelController _levelController;
+        protected readonly LevelController _levelController;
 
         #endregion
 

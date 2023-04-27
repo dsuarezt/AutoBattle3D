@@ -48,7 +48,7 @@ namespace LitLab.CyberTitans.Level
         [SerializeField] private VoidEventChannelSO _onCombatPhaseFinishedChannel = default;
 
         private ILevelState _currentState;
-        private ILevelStateConfiguration _stateConfiguration;
+        private IStateConfiguration _stateConfiguration;
 
         #endregion
 
@@ -78,7 +78,7 @@ namespace LitLab.CyberTitans.Level
 
         private void OnDestroy()
         {
-            Reset();
+            ResetLevel();
         }
 
         #endregion
@@ -97,8 +97,8 @@ namespace LitLab.CyberTitans.Level
 
         public void ChangeState(string newStateName)
         {
-            _currentState = _stateConfiguration.GetState(newStateName);
-            _currentState.Enter();
+            _currentState = _stateConfiguration.GetState(newStateName) as ILevelState;
+            _currentState?.Enter();
         }
 
         public void Initialize()
@@ -120,7 +120,7 @@ namespace LitLab.CyberTitans.Level
 
         private void ConfigureStates()
         {
-            _stateConfiguration = new LevelStateConfiguration();
+            _stateConfiguration = new StateConfiguration();
             _stateConfiguration.AddState(nameof(LevelInitialState), new LevelInitialState(this));
             _stateConfiguration.AddState(nameof(LevelPreparationStartedState), new LevelPreparationStartedState(this));
             _stateConfiguration.AddState(nameof(LevelPreparationFinishedState), new LevelPreparationFinishedState(this));
@@ -129,11 +129,11 @@ namespace LitLab.CyberTitans.Level
             _stateConfiguration.AddState(nameof(LevelFinishedState), new LevelFinishedState(this));
         }
 
-        private void Reset()
+        private void ResetLevel()
         {
-            _levelEconomyManager?.Reset();
-            _selectionController?.Reset();
-            _roundManagerSO?.Reset();
+            _levelEconomyManager?.ResetLevelEconomy();
+            _selectionController?.ResetSelection();
+            _roundManagerSO?.ResetRound();
         }
 
         #endregion
