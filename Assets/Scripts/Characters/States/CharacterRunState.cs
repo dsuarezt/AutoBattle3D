@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------
-// File name: CharacterChargeState.cs
+// File name: CharacterRunState.cs
 // Author: Dayron Suárez del Toro
 // Email: dsuarezt92@gmail.com
 // Created on: April 27, 2023
@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace LitLab.CyberTitans.Characters
 {
-    public class CharacterChargeState : CharacterStateBase
+    public class CharacterRunState : CharacterStateBase
     {
         #region Fields
 
@@ -23,7 +23,7 @@ namespace LitLab.CyberTitans.Characters
 
         #region Constructors
 
-        public CharacterChargeState(Character character) : base(character)
+        public CharacterRunState(Character character) : base(character)
         {
             float minDistanceToAttack = _character.CharacterData.MinDistanceToAttak;
             _sqrMinDistanceToAttack = minDistanceToAttack * minDistanceToAttack;

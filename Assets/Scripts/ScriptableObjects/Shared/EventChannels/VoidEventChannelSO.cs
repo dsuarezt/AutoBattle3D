@@ -23,18 +23,18 @@ namespace LitLab.CyberTitans.Shared
 
         #region Methods
 
-        public void RaiseEvent()
+        public void RaiseEvent(object sender)
         {
             GLDebug.Log($"Raising event: {name}.");
 
-            OnEventRaised?.Invoke(this);
+            OnEventRaised?.Invoke(sender);
         }
 
 #if UNITY_EDITOR
         [Button]
         private void Raise()
         {
-            RaiseEvent();
+            RaiseEvent(null);
         }
 #endif
 

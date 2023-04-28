@@ -36,7 +36,7 @@ namespace LitLab.CyberTitans.Level
             _levelController.PreparationPhaseMessage.SetActive(false);
             _levelController.ActiveBattlefieldInputBlocker(false);
 
-            _levelController.OnPreparationPhaseStartedChannel?.RaiseEvent();
+            _levelController.OnPreparationPhaseStartedChannel?.RaiseEvent(this);
 
             CancellationToken cancellationToken = _levelController.GetCancellationToken();
             await _levelController.RoundManager.StartPreparationPhaseAsync(cancellationToken);

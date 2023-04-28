@@ -127,8 +127,8 @@ namespace LitLab.CyberTitans.Level
 
         private void SwapCharacters()
         {
-            var currentCharacter = _currentSlot.Character;
-            var targetCharacter = _targetSlot.Character;
+            var currentCharacter = _currentSlot.RemoveCharacter();
+            var targetCharacter = _targetSlot.RemoveCharacter();
             _currentSlot.AddNewCharacter(targetCharacter);
             _targetSlot.AddNewCharacter(currentCharacter);
         }

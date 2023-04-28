@@ -88,11 +88,6 @@ namespace LitLab.CyberTitans.Rounds
 
         public void ResetRound()
         {
-            if (_countdownTimer != null)
-            {
-                _countdownTimer.OnValueChangedEvent -= OnTimerValueChanged;
-            }
-
             _combatResults = null;
             _isWinStreakLost = false;
             UnregisterListeners();
@@ -105,7 +100,10 @@ namespace LitLab.CyberTitans.Rounds
 
         private void UnregisterListeners()
         {
-            _countdownTimer.OnValueChangedEvent -= OnTimerValueChanged;
+            if (_countdownTimer != null)
+            {
+                _countdownTimer.OnValueChangedEvent -= OnTimerValueChanged;
+            }
         }
 
         private void OnTimerValueChanged(int value)

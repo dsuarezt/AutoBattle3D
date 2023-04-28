@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _description: Returns CharacterDataSO randomly.
   _characters:
+  - {fileID: 11400000, guid: 3ddad67626cdaa243a68e409ec0dc065, type: 2}
+  - {fileID: 11400000, guid: b4ba93e40e3ba6f48a04b52f36079180, type: 2}
   - {fileID: 11400000, guid: 497dd31245d5491478cc9dc7e8d24c1d, type: 2}
   - {fileID: 11400000, guid: a058bc596a3f1e64794c02887b3bdfd7, type: 2}
+  - {fileID: 11400000, guid: de2be3628a3164a41b7a34c945c2e72e, type: 2}
+  - {fileID: 11400000, guid: d4e3d4a7295504e4a8cb64506ea36149, type: 2}
+  - {fileID: 11400000, guid: 3609d25dbee68b649aa700fd9ac71922, type: 2}
+  - {fileID: 11400000, guid: 55dce6d4607e0e044849e9cf650abd27, type: 2}

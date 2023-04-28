@@ -23,7 +23,7 @@ namespace LitLab.CyberTitans.Level
 
         public override void Enter()
         {
-            _levelController.OnCombatPhaseFinishedChannel?.RaiseEvent();
+            _levelController.OnCombatPhaseFinishedChannel?.RaiseEvent(this);
 
             RoundManagerSO roundManager = _levelController.RoundManager;
             roundManager.Reward();

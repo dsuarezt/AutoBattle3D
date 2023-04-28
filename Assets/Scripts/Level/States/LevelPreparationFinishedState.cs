@@ -31,7 +31,7 @@ namespace LitLab.CyberTitans.Level
 
         private async UniTask FinishPreparationPhaseAsync()
         {
-            _levelController.OnPreparationPhaseFinishedChannel?.RaiseEvent();
+            _levelController.OnPreparationPhaseFinishedChannel?.RaiseEvent(this);
             
             _levelController.BattlefieldController.CheckCharacterAmountOnBattlefield();
             CancellationToken cancellationToken = _levelController.GetCancellationToken();

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ae6fe222712d2e4cb5efce35bad0fea, type: 3}
-  m_Name: OrcWorkerCharacterData
+  m_Name: DarkElfHeavyCharacterData
   m_EditorClassIdentifier: 
   _description: 
-  _characterName: Orc Worker
-  _characterPrefab: {fileID: 7499827220687322185, guid: c36c01199a8619b41bf7ec920897b7f6, type: 3}
+  _characterName: Dark Elf Heavy Infantry
+  _characterPrefab: {fileID: -6759688686218752864, guid: 8811ffe08f518824fabe31f9f9b2406a, type: 3}
   _rarity: {fileID: 11400000, guid: e0308c00d67a03f4dad19bf790aba4a5, type: 2}
-  _cardImage: {fileID: 21300000, guid: dae33700bd23f76409a80bf78fdb8a42, type: 3}
+  _cardImage: {fileID: 21300000, guid: f8751d269a45ee343a33f6bd251a38aa, type: 3}
   _health: 10
   _damage: 3
   _movementSpeed: 3

@@ -76,9 +76,6 @@ namespace LitLab.CyberTitans.Slots
         {
             if (character)
             {
-                // Before adding a new character it is necessary to remove the previous one in case it existed.
-                RemoveCharacter();
-
                 _character = character;
                 _character?.transform.SetParent(_spawnPoint);
                 ResetCharacter();
@@ -96,7 +93,7 @@ namespace LitLab.CyberTitans.Slots
         public void ResetCharacter()
         {
             _character?.transform.SetPositionAndRotation(_spawnPoint.position, _spawnPoint.rotation);
-            _character.ResetCharacter();
+            _character?.ResetCharacter();
         }
 
         public Character RemoveCharacter()

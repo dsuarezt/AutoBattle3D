@@ -3118,7 +3118,8 @@ GameObject:
   m_Component:
   - component: {fileID: 487008}
   - component: {fileID: 9591022}
-  - component: {fileID: 1434356899279313673}
+  - component: {fileID: 4224714267979782139}
+  - component: {fileID: -2018504787695406648}
   m_Layer: 0
   m_Name: HighELF_Mage
   m_TagString: Untagged
@@ -3181,7 +3182,7 @@ Animator:
   m_GameObject: {fileID: 165582}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4d96a0eecc83e2e4bab3541489dacb4d, type: 3}
-  m_Controller: {fileID: 22100000, guid: 92f00a368679047c8922c0a5b7a74972, type: 2}
+  m_Controller: {fileID: 22100000, guid: 2ef5a7da330a69e419410c69532f98f7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -3190,7 +3191,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1434356899279313673
+--- !u!136 &4224714267979782139
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165582}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.79
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-2018504787695406648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3199,7 +3214,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 165582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a03e6579712927140b181db7e2a394cf, type: 3}
+  m_Script: {fileID: 11500000, guid: d54d55def98aad74ba005ee39cce4f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &166014

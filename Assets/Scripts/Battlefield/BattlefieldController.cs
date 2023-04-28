@@ -41,7 +41,6 @@ namespace LitLab.CyberTitans.Battlefield
         [SerializeField] private InventoryController _inventory = default;
 
         private bool _isPreparationPhase;
-        private Character _characterSelected;
         private CharacterFinder _characterFinder;
 
         #endregion
@@ -140,7 +139,7 @@ namespace LitLab.CyberTitans.Battlefield
             {
                 // If the preparation has finished and a character is being selected from the battlefield,
                 // it is necessary to deselect it to return it to its slot.
-                _onCancelSelectionChannel?.RaiseEvent();
+                _onCancelSelectionChannel?.RaiseEvent(this);
             }
         }
 

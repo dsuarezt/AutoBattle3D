@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6ee9c0d698c3a2468656e05d8aff97d, type: 3}
-  m_Name: ShopInitialSettings
+  m_Name: ShopSettings
   m_EditorClassIdentifier: 
   _description: Provides the shop initial values. It can be consumed by objects that
     need to take those values to initialize.

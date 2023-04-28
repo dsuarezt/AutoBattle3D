@@ -21,7 +21,7 @@ namespace LitLab.CyberTitans.Characters
 
         private Animator _animator;
         private int _idleStateId;
-        private int _chargeStateId;
+        private int _runStateId;
         private int _attackStateId;
 
         #endregion
@@ -72,9 +72,9 @@ namespace LitLab.CyberTitans.Characters
             _animator.SetTrigger(_idleStateId);
         }
 
-        public void ChangeToChargeAnimatorState()
+        public void ChangeToRunAnimatorState()
         {
-            _animator.SetTrigger(_chargeStateId);
+            _animator.SetTrigger(_runStateId);
         }
 
         public void ChangeToAttackAnimatorState()
@@ -93,14 +93,14 @@ namespace LitLab.CyberTitans.Characters
             _stateConfiguration = new StateConfiguration();
             _stateConfiguration.AddState(nameof(CharacterIdleState), new CharacterIdleState(this));
             _stateConfiguration.AddState(nameof(CharacterFindEnemyState), new CharacterFindEnemyState(this));
-            _stateConfiguration.AddState(nameof(CharacterChargeState), new CharacterChargeState(this));
+            _stateConfiguration.AddState(nameof(CharacterRunState), new CharacterRunState(this));
             _stateConfiguration.AddState(nameof(CharacterAttackState), new CharacterAttackState(this));
         }
 
         private void GetAnimatorStateIds()
         {
             _idleStateId = Animator.StringToHash("idle");
-            _chargeStateId = Animator.StringToHash("charge");
+            _runStateId = Animator.StringToHash("run");
             _attackStateId = Animator.StringToHash("attack");
         }
 

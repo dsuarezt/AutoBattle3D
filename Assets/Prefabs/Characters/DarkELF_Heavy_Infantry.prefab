@@ -976,7 +976,8 @@ GameObject:
   m_Component:
   - component: {fileID: 464248}
   - component: {fileID: 9511180}
-  - component: {fileID: 2004348630796246276}
+  - component: {fileID: -1792906253105600065}
+  - component: {fileID: -6759688686218752864}
   m_Layer: 0
   m_Name: DarkELF_Heavy_Infantry
   m_TagString: Untagged
@@ -1039,7 +1040,7 @@ Animator:
   m_GameObject: {fileID: 123826}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4d96a0eecc83e2e4bab3541489dacb4d, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4398cb92a71e6e2429a3b2f00d619e6d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1048,7 +1049,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2004348630796246276
+--- !u!136 &-1792906253105600065
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.79
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-6759688686218752864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1057,7 +1072,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 123826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a03e6579712927140b181db7e2a394cf, type: 3}
+  m_Script: {fileID: 11500000, guid: d54d55def98aad74ba005ee39cce4f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &125322

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _description: Provides the level economy initial values. It can be consumed by
     objects that need to take those values to initialize.
-  _goldAmount: 10
+  _goldAmount: 30
   _livesAmount: 10
   _playerLevel: 1
   _playerLevelUpgradeCost: 1

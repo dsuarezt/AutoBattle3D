@@ -23,8 +23,8 @@ namespace LitLab.CyberTitans.Characters
         {
             if (_character.TargetEnemy)
             {
-                _character.ChangeToChargeAnimatorState();
-                _character.ChangeState(nameof(CharacterChargeState));
+                _character.ChangeToRunAnimatorState();
+                _character.ChangeState(nameof(CharacterRunState));
             }
         }
 

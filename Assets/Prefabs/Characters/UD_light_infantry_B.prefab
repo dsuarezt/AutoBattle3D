@@ -1471,6 +1471,8 @@ GameObject:
   m_Component:
   - component: {fileID: 468958}
   - component: {fileID: 9558890}
+  - component: {fileID: -7793188587828768805}
+  - component: {fileID: -195279801405344577}
   m_Layer: 0
   m_Name: UD_light_infantry_B
   m_TagString: Untagged
@@ -1508,7 +1510,7 @@ Animator:
   m_GameObject: {fileID: 197242}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1851e3e6c3e77d648a0cc1ef90d895fa, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4398cb92a71e6e2429a3b2f00d619e6d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1517,3 +1519,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &-7793188587828768805
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.79
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-195279801405344577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54d55def98aad74ba005ee39cce4f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

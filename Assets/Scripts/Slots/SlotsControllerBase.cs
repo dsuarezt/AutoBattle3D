@@ -27,6 +27,7 @@ namespace LitLab.CyberTitans.Slots
 
         protected IList<Character> _characters = new List<Character>();
         protected IList<CharacterSelector> _characterSelectors = new List<CharacterSelector>();
+        protected Character _characterSelected;
 
         #endregion
 
@@ -71,8 +72,8 @@ namespace LitLab.CyberTitans.Slots
         public virtual void OnCharacterRemovedFromSlot(Character character)
         {
             int index = _characters.IndexOf(character);
-            _characters.RemoveAt(index);
-            _characterSelectors.RemoveAt(index);
+            _characters?.RemoveAt(index);
+            _characterSelectors?.RemoveAt(index);
         }
 
         protected virtual void RegisterListeners()
@@ -89,12 +90,14 @@ namespace LitLab.CyberTitans.Slots
 
         protected virtual void OnSelectCharacter(object sender, Slot slot)
         {
+            _characterSelected = slot.Character;
             ActivateSlots(true);
             AllowCharacterSelection(false);
         }
 
         protected virtual void OnDeselectCharacter(object sender, Slot slot)
         {
+            _characterSelected = null;
             ActivateSlots(false);
             AllowCharacterSelection(true);
         }
