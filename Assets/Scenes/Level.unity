@@ -3347,10 +3347,10 @@ RectTransform:
   m_Father: {fileID: 1742472595}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.07, y: 0}
-  m_AnchorMax: {x: 0.34600002, y: 1}
-  m_AnchoredPosition: {x: 0.2849846, y: -0.0000371933}
-  m_SizeDelta: {x: -0.62599945, y: 0}
+  m_AnchorMin: {x: 0.11740085, y: 0}
+  m_AnchorMax: {x: 0.4092012, y: 1}
+  m_AnchoredPosition: {x: -0.20000267, y: 0.000030517578}
+  m_SizeDelta: {x: 0.20900011, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428140624
 MonoBehaviour:
@@ -3372,7 +3372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7ee48c5fba4919649a8a6094cbead669, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32ad4fe478bb3434483eb2897d64d6ab, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4656,14 +4656,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.990566, g: 0.80257976, b: 0.07008721, a: 1}
+  m_Color: {r: 0.12029299, g: 0.6603774, b: 0.11525454, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f95f697d66d238446b1ab717def09945, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 063956cc625f73640b7448f10232f423, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -10591,10 +10591,10 @@ RectTransform:
   m_Father: {fileID: 1742472595}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.34600002, y: 0}
+  m_AnchorMin: {x: 0.4092012, y: 0}
   m_AnchorMax: {x: 0.93000007, y: 1}
-  m_AnchoredPosition: {x: -0.055999756, y: 0}
-  m_SizeDelta: {x: 0.53899956, y: 0}
+  m_AnchoredPosition: {x: 0.059000015, y: 0}
+  m_SizeDelta: {x: 0.30900002, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1157948520
 MonoBehaviour:
@@ -20740,14 +20740,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.990566, g: 0.80257976, b: 0.07008721, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 0ef10c5c87693b44f8ec97f1552af59b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
